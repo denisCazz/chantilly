@@ -9,7 +9,10 @@
 		<div class="hero-content">
 			<h1 class="hero-title">Benvenuti al Bar Chantilly</h1>
 			<p class="hero-subtitle">Accoglienza, eleganza e servizi a portata di mano</p>
-			<a href="#servizi" class="btn hero-btn">Scopri i nostri servizi</a>
+			<div class="hero-buttons">
+				<a href="#servizi" class="btn hero-btn">Scopri i nostri servizi</a>
+				<a href="/menu/" class="btn btn-outline hero-btn">Vedi il Menu</a>
+			</div>
 		</div>
 	</div>
 </section>
@@ -73,6 +76,13 @@
 		padding: 1rem 2rem;
 		border-radius: var(--border-radius-lg);
 		box-shadow: var(--shadow-lg);
+	}
+	
+	.hero-buttons {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
 	}
 	
 	@media (max-width: 768px) {

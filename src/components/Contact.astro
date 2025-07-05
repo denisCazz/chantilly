@@ -116,17 +116,23 @@
 	.info-icon {
 		font-size: 2rem;
 		flex-shrink: 0;
+		margin-top: 0.25rem;
+	}
+	
+	.info-content {
+		flex: 1;
 	}
 	
 	.info-content h3 {
 		color: var(--color-primary);
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.75rem;
 		font-size: 1.2rem;
+		font-weight: 600;
 	}
 	
 	.info-content p {
 		color: var(--color-text-light);
-		line-height: 1.5;
+		line-height: 1.6;
 		margin: 0;
 	}
 	
@@ -146,6 +152,15 @@
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
+		margin-top: 1rem;
+	}
+	
+	.contact-actions .btn {
+		flex: 1;
+		min-width: 150px;
+		text-align: center;
+		padding: 1rem 1.5rem;
+		font-weight: 600;
 	}
 	
 	.call-btn {
@@ -231,11 +246,17 @@
 		}
 		
 		.info-item {
-			padding: 1rem;
+			padding: 1.25rem;
 		}
 		
 		.contact-actions {
 			justify-content: center;
+			flex-direction: column;
+		}
+		
+		.contact-actions .btn {
+			flex: none;
+			width: 100%;
 		}
 		
 		.map-placeholder iframe {
@@ -257,15 +278,18 @@
 		.info-item {
 			flex-direction: column;
 			text-align: center;
-			gap: 0.5rem;
+			gap: 0.75rem;
+			padding: 1rem;
 		}
 		
 		.info-icon {
 			align-self: center;
+			margin-top: 0;
 		}
 		
-		.contact-actions {
-			flex-direction: column;
+		.contact-actions .btn {
+			padding: 0.875rem 1rem;
+			font-size: 0.9rem;
 		}
 		
 		.map-placeholder iframe {
