@@ -1,0 +1,110 @@
+---
+---
+
+<section class="about section">
+	<div class="container">
+		<h2 class="section-title">Chi Siamo</h2>
+		<div class="about-content">
+			<div class="about-text">
+				<p>
+					Bar e Tabaccheria elegante, pulita e accogliente. Lo staff è sempre sorridente e gentile. 
+					Punto di riferimento a Carmagnola per i tuoi momenti di pausa o per i servizi di tabaccheria.
+				</p>
+				<p>
+					Da anni serviamo la comunità di Carmagnola con professionalità e cortesia, 
+					offrendo un ambiente caldo e familiare dove ogni cliente si sente il benvenuto.
+				</p>
+			</div>
+			<div class="about-features">
+				<div class="feature">
+					<div class="feature-icon">🏪</div>
+					<h3>Ambiente Accogliente</h3>
+					<p>Spazi curati e atmosfera familiare</p>
+				</div>
+				<div class="feature">
+					<div class="feature-icon">😊</div>
+					<h3>Staff Qualificato</h3>
+					<p>Personale sempre sorridente e disponibile</p>
+				</div>
+				<div class="feature">
+					<div class="feature-icon">⭐</div>
+					<h3>Qualità Premium</h3>
+					<p>Prodotti selezionati e servizi di qualità</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about {
+		background: var(--color-gray-light);
+	}
+	
+	.about-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4rem;
+		align-items: center;
+	}
+	
+	.about-text {
+		font-size: 1.1rem;
+		line-height: 1.8;
+	}
+	
+	.about-text p {
+		margin-bottom: 1.5rem;
+		color: var(--color-text-light);
+	}
+	
+	.about-features {
+		display: grid;
+		gap: 2rem;
+	}
+	
+	.feature {
+		text-align: center;
+		padding: 1.5rem;
+		background: var(--color-white);
+		border-radius: var(--border-radius-lg);
+		box-shadow: var(--shadow);
+		transition: var(--transition);
+	}
+	
+	.feature:hover {
+		transform: translateY(-5px);
+		box-shadow: var(--shadow-lg);
+	}
+	
+	.feature-icon {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.feature h3 {
+		font-size: 1.2rem;
+		color: var(--color-primary);
+		margin-bottom: 0.5rem;
+	}
+	
+	.feature p {
+		color: var(--color-text-light);
+		font-size: 0.9rem;
+	}
+	
+	@media (max-width: 768px) {
+		.about-content {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		
+		.about-text {
+			font-size: 1rem;
+		}
+		
+		.about-features {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

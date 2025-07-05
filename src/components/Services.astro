@@ -1,0 +1,146 @@
+---
+---
+
+<section id="servizi" class="services section">
+	<div class="container">
+		<h2 class="section-title">I Nostri Servizi</h2>
+		<p class="section-subtitle">
+			Tutto quello di cui hai bisogno in un unico posto, con la qualità e la cortesia che ci contraddistingue
+		</p>
+		
+		<div class="services-grid">
+			<div class="service-card">
+				<div class="service-icon">☕</div>
+				<h3>Bar</h3>
+				<p>Caffè di qualità, cappuccini cremosi, bevande calde e fredde, snack e dolci freschi</p>
+			</div>
+			
+			<div class="service-card">
+				<div class="service-icon">🚬</div>
+				<h3>Tabaccheria</h3>
+				<p>Sigarette, sigari, accessori per fumatori e tutto l'occorrente per i tabacchi</p>
+			</div>
+			
+			<div class="service-card">
+				<div class="service-icon">🎰</div>
+				<h3>Punto Sisal / Lottomatica</h3>
+				<p>Scommesse sportive, giochi, lotterie istantanee e servizi di gaming autorizzati</p>
+			</div>
+			
+			<div class="service-card">
+				<div class="service-icon">📱</div>
+				<h3>Ricariche Telefoniche</h3>
+				<p>Ricariche per tutti gli operatori, pagamento bollette e servizi telefonici</p>
+			</div>
+			
+			<div class="service-card">
+				<div class="service-icon">🔌</div>
+				<h3>Elfbar Point</h3>
+				<p>Sigarette elettroniche, liquidi, accessori e tutto per il vaping moderno</p>
+			</div>
+			
+			<div class="service-card special">
+				<div class="service-icon">🛍️</div>
+				<h3>E molto altro...</h3>
+				<p>Giornali, riviste, biglietti per trasporti pubblici e tanti altri servizi utili</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.services {
+		background: var(--color-white);
+	}
+	
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+	
+	.service-card {
+		background: var(--color-white);
+		border: 2px solid var(--color-gray);
+		border-radius: var(--border-radius-lg);
+		padding: 2rem;
+		text-align: center;
+		transition: var(--transition);
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.service-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+		transition: var(--transition);
+	}
+	
+	.service-card:hover {
+		border-color: var(--color-primary);
+		transform: translateY(-5px);
+		box-shadow: var(--shadow-lg);
+	}
+	
+	.service-card:hover::before {
+		left: 100%;
+	}
+	
+	.service-card.special {
+		background: linear-gradient(135deg, var(--color-warm) 0%, var(--color-accent) 100%);
+		border-color: var(--color-secondary);
+	}
+	
+	.service-icon {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+		display: block;
+	}
+	
+	.service-card h3 {
+		font-size: 1.4rem;
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+		font-weight: 600;
+	}
+	
+	.service-card p {
+		color: var(--color-text-light);
+		line-height: 1.6;
+	}
+	
+	.special h3 {
+		color: var(--color-primary);
+	}
+	
+	.special p {
+		color: var(--color-text);
+	}
+	
+	@media (max-width: 768px) {
+		.services-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+		
+		.service-card {
+			padding: 1.5rem;
+		}
+		
+		.service-icon {
+			font-size: 2.5rem;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.service-card {
+			padding: 1rem;
+		}
+	}
+</style>

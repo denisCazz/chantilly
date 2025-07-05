@@ -1,0 +1,184 @@
+---
+export interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Bar Tabaccheria Chantilly - Viale Barbaroux, 68, Carmagnola. Bar elegante e accogliente con servizi di tabaccheria, ricariche telefoniche, punto Sisal e molto altro." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Open Graph -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://bar-chantilly.it" />
+		
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+		
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+		
+		<style is:global>
+			:root {
+				--color-primary: #8B4513;
+				--color-secondary: #D2691E;
+				--color-accent: #F4A460;
+				--color-warm: #FFF8DC;
+				--color-text: #2C1810;
+				--color-text-light: #6B4423;
+				--color-white: #FFFFFF;
+				--color-gray-light: #F5F5F5;
+				--color-gray: #E0E0E0;
+				--color-gray-dark: #8E8E8E;
+				
+				--font-primary: 'Inter', sans-serif;
+				--font-heading: 'Playfair Display', serif;
+				
+				--border-radius: 8px;
+				--border-radius-lg: 16px;
+				--shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+				--shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+				
+				--transition: all 0.3s ease;
+			}
+			
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			
+			html {
+				scroll-behavior: smooth;
+			}
+			
+			body {
+				font-family: var(--font-primary);
+				color: var(--color-text);
+				line-height: 1.6;
+				overflow-x: hidden;
+			}
+			
+			h1, h2, h3, h4, h5, h6 {
+				font-family: var(--font-heading);
+				line-height: 1.2;
+			}
+			
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+			
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+			
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 1rem;
+			}
+			
+			.btn {
+				display: inline-block;
+				padding: 0.75rem 1.5rem;
+				background: var(--color-primary);
+				color: var(--color-white);
+				border: none;
+				border-radius: var(--border-radius);
+				font-weight: 500;
+				text-align: center;
+				cursor: pointer;
+				transition: var(--transition);
+				text-decoration: none;
+			}
+			
+			.btn:hover {
+				background: var(--color-secondary);
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+			
+			.btn-outline {
+				background: transparent;
+				color: var(--color-primary);
+				border: 2px solid var(--color-primary);
+			}
+			
+			.btn-outline:hover {
+				background: var(--color-primary);
+				color: var(--color-white);
+			}
+			
+			.section {
+				padding: 4rem 0;
+			}
+			
+			.section-title {
+				text-align: center;
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+				color: var(--color-primary);
+			}
+			
+			.section-subtitle {
+				text-align: center;
+				font-size: 1.1rem;
+				color: var(--color-text-light);
+				margin-bottom: 3rem;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			@media (max-width: 768px) {
+				.container {
+					padding: 0 1rem;
+				}
+				
+				.section {
+					padding: 2rem 0;
+				}
+				
+				.section-title {
+					font-size: 2rem;
+				}
+			}
+			
+			/* Skip link for accessibility */
+			.skip-link {
+				position: absolute;
+				top: -40px;
+				left: 6px;
+				background: var(--color-primary);
+				color: var(--color-white);
+				padding: 8px;
+				text-decoration: none;
+				z-index: 1001;
+				border-radius: var(--border-radius);
+				font-weight: 500;
+			}
+			
+			.skip-link:focus {
+				top: 6px;
+			}
+		</style>
+	</body>
+</html>
