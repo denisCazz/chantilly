@@ -3,60 +3,72 @@
 
 <section id="orari" class="hours section">
 	<div class="container">
-		<h2 class="section-title">Orari di Apertura</h2>
+		<h2 class="section-title">I Nostri Orari</h2>
 		<p class="section-subtitle">
-			Siamo aperti tutti i giorni per servirti al meglio, tranne il mercoledì
+			Siamo aperti tutti i giorni per offrirti il nostro miglior servizio, con orario continuato.
 		</p>
 		
 		<div class="hours-content">
-			<div class="hours-table">
-				<div class="hours-row">
-					<span class="day">Lunedì</span>
-					<span class="time">07:00 - 19:30</span>
-				</div>
-				<div class="hours-row">
-					<span class="day">Martedì</span>
-					<span class="time">07:00 - 19:30</span>
-				</div>
-				<div class="hours-row closed">
-					<span class="day">Mercoledì</span>
-					<span class="time">Chiuso</span>
-				</div>
-				<div class="hours-row">
-					<span class="day">Giovedì</span>
-					<span class="time">07:00 - 19:30</span>
-				</div>
-				<div class="hours-row">
-					<span class="day">Venerdì</span>
-					<span class="time">07:00 - 19:30</span>
-				</div>
-				<div class="hours-row">
-					<span class="day">Sabato</span>
-					<span class="time">07:00 - 19:30</span>
-				</div>
-				<div class="hours-row">
-					<span class="day">Domenica</span>
-					<span class="time">08:00 - 13:00</span>
+			<div class="hours-table-wrapper">
+				<div class="hours-table">
+					<div class="hours-row">
+						<span class="day">Lunedì</span>
+						<span class="time">07:00 - 19:30</span>
+					</div>
+					<div class="hours-row">
+						<span class="day">Martedì</span>
+						<span class="time">07:00 - 19:30</span>
+					</div>
+					<div class="hours-row closed">
+						<span class="day">Mercoledì</span>
+						<span class="time">Giorno di chiusura</span>
+					</div>
+					<div class="hours-row">
+						<span class="day">Giovedì</span>
+						<span class="time">07:00 - 19:30</span>
+					</div>
+					<div class="hours-row">
+						<span class="day">Venerdì</span>
+						<span class="time">07:00 - 19:30</span>
+					</div>
+					<div class="hours-row">
+						<span class="day">Sabato</span>
+						<span class="time">07:00 - 19:30</span>
+					</div>
+					<div class="hours-row">
+						<span class="day">Domenica</span>
+						<span class="time">08:00 - 13:00</span>
+					</div>
 				</div>
 			</div>
 			
 			<div class="hours-info">
 				<div class="info-card">
-					<div class="info-icon">🕐</div>
+					<div class="info-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-8" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+							<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+							<path d="M12 12l-3.5 2" />
+							<path d="M12 7v5" />
+						</svg>
+					</div>
 					<h3>Orario Continuato</h3>
-					<p>Aperto tutto il giorno senza pausa pranzo dal lunedì al sabato</p>
+					<p>Siamo aperti senza interruzioni dal lunedì al sabato per garantirti la massima comodità.</p>
 				</div>
 				
 				<div class="info-card">
-					<div class="info-icon">☀️</div>
-					<h3>Apertura Mattutina</h3>
-					<p>Iniziamo presto per la tua colazione perfetta</p>
-				</div>
-				
-				<div class="info-card">
-					<div class="info-icon">📅</div>
+					<div class="info-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+							<path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+							<path d="M16 3l0 4" />
+							<path d="M8 3l0 4" />
+							<path d="M4 11l16 0" />
+							<path d="M8 15h2v2h-2z" />
+						</svg>
+					</div>
 					<h3>Orari Festivi</h3>
-					<p>Gli orari potrebbero variare durante le festività. Contattaci per informazioni</p>
+					<p>Durante le festività, gli orari potrebbero subire variazioni. Contattaci per maggiori dettagli.</p>
 				</div>
 			</div>
 		</div>
@@ -65,131 +77,146 @@
 
 <style>
 	.hours {
-		background: var(--color-white);
+		background: var(--color-background);
+		padding: 6rem 0;
+		border-bottom: 1px solid var(--color-border);
 	}
-	
+
+	[data-theme="dark"] .hours {
+		background: var(--color-surface);
+	}
+
 	.hours-content {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 4rem;
 		align-items: start;
+		margin-top: 3rem;
 	}
-	
-	.hours-table {
-		background: var(--color-white);
-		border: 2px solid var(--color-gray);
+
+	.hours-table-wrapper {
+		background: var(--color-background);
+		border: 1px solid var(--color-border);
 		border-radius: var(--border-radius-lg);
-		overflow: hidden;
-		box-shadow: var(--shadow);
+		padding: 2rem;
+		box-shadow: var(--shadow-md);
 	}
-	
+
+	[data-theme="dark"] .hours-table-wrapper {
+		background: var(--color-surface);
+		border-color: var(--color-border-dark);
+	}
+
+	.hours-table {
+		width: 100%;
+	}
+
 	.hours-row {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 1.25rem 1.5rem;
-		border-bottom: 1px solid var(--color-gray);
+		padding: 1rem 0;
+		border-bottom: 1px solid var(--color-border-light);
 		transition: var(--transition);
 	}
-	
+
 	.hours-row:last-child {
 		border-bottom: none;
 	}
-	
+
 	.hours-row:hover {
-		background: var(--color-warm);
+		background-color: var(--color-surface);
 	}
 	
-	.hours-row.closed {
-		background: var(--color-gray-light);
-		color: var(--color-gray-dark);
+	[data-theme="dark"] .hours-row:hover {
+		background-color: var(--color-background);
 	}
-	
-	.hours-row.closed:hover {
-		background: var(--color-gray-light);
-	}
-	
+
 	.day {
 		font-weight: 600;
-		color: var(--color-text);
-		font-size: 1.1rem;
+		color: var(--color-text-primary);
 	}
-	
+
 	.time {
+		font-family: var(--font-mono);
+		color: var(--color-text-secondary);
 		font-weight: 500;
-		color: var(--color-primary);
-		font-size: 1.1rem;
 	}
-	
-	.closed .day,
-	.closed .time {
-		color: var(--color-gray-dark);
+
+	.hours-row.closed .day,
+	.hours-row.closed .time {
+		color: var(--color-text-disabled);
+		text-decoration: line-through;
 	}
-	
+
+	.hours-row.closed .time {
+		text-decoration: none;
+		font-style: italic;
+	}
+
 	.hours-info {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
 	}
-	
+
 	.info-card {
-		background: var(--color-gray-light);
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		background: var(--color-background);
 		padding: 1.5rem;
 		border-radius: var(--border-radius-lg);
-		text-align: center;
-		transition: var(--transition);
+		border: 1px solid var(--color-border);
 	}
-	
-	.info-card:hover {
-		transform: translateY(-3px);
-		box-shadow: var(--shadow);
+
+	[data-theme="dark"] .info-card {
+		background: var(--color-surface);
+		border-color: var(--color-border-dark);
 	}
-	
+
 	.info-icon {
-		font-size: 2rem;
-		margin-bottom: 1rem;
-	}
-	
-	.info-card h3 {
 		color: var(--color-primary);
-		margin-bottom: 0.5rem;
-		font-size: 1.2rem;
+		flex-shrink: 0;
 	}
 	
+	.info-icon svg {
+		width: 32px;
+		height: 32px;
+	}
+
+	.info-card h3 {
+		font-size: 1.1rem;
+		color: var(--color-text-primary);
+		margin-bottom: 0.3rem;
+		font-weight: 600;
+	}
+
 	.info-card p {
-		color: var(--color-text-light);
 		font-size: 0.9rem;
+		color: var(--color-text-secondary);
 		line-height: 1.5;
+		margin: 0;
 	}
-	
-	@media (max-width: 768px) {
+
+	@media (max-width: 992px) {
 		.hours-content {
 			grid-template-columns: 1fr;
-			gap: 2rem;
-		}
-		
-		.hours-row {
-			padding: 1rem;
-		}
-		
-		.day,
-		.time {
-			font-size: 1rem;
-		}
-		
-		.info-card {
-			padding: 1rem;
+			gap: 3rem;
 		}
 	}
-	
-	@media (max-width: 480px) {
-		.hours-row {
-			padding: 0.75rem;
+
+	@media (max-width: 768px) {
+		.hours {
+			padding: 4rem 0;
 		}
-		
-		.day,
-		.time {
-			font-size: 0.9rem;
+		.hours-table-wrapper {
+			padding: 1.5rem;
+		}
+		.info-card {
+			flex-direction: column;
+			text-align: center;
+			gap: 1rem;
 		}
 	}
 </style>

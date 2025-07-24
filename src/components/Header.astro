@@ -1,190 +1,160 @@
 ---
+import { Icon } from 'astro-icon/components';
 ---
 
 <header class="header">
-	<nav class="nav">
-		<div class="container">
-			<div class="nav-content">
-				<a href="/" class="logo">
-					<h1>Chantilly</h1>
-				</a>
+	<div class="header-container">
+		<nav class="nav">
+			<a href="/" class="logo">
+				<span class="logo-text">Bar Tabacchi Chantilly</span>
+			</a>
+			
+			<ul class="nav-menu" id="nav-menu">
+				<li><a href="/#home" class="nav-link">Home</a></li>
+				<li><a href="/menu/" class="nav-link">Menu</a></li>
+				<li><a href="/#servizi" class="nav-link">Servizi</a></li>
+				<li><a href="/#orari" class="nav-link">Orari</a></li>
+				<li><a href="/#contatti" class="nav-link">Contatti</a></li>
+			</ul>
+			
+			<div class="nav-controls">
+				<button id="theme-toggle" class="theme-toggle" aria-label="Cambia tema">
+					<Icon name="mdi:weather-sunny" class="sun-icon" />
+					<Icon name="mdi:weather-night" class="moon-icon" />
+				</button>
 				
-				<ul class="nav-menu" id="nav-menu">
-					<li><a href="/#home" class="nav-link">Home</a></li>
-					<li><a href="/#servizi" class="nav-link">Servizi</a></li>
-					<li><a href="/menu/" class="nav-link">Menu</a></li>
-					<li><a href="/#orari" class="nav-link">Orari</a></li>
-					<li><a href="/#contatti" class="nav-link">Contatti</a></li>
-				</ul>
-				
-				<button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-					<span></span>
-					<span></span>
-					<span></span>
+				<button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+					<span class="hamburger"></span>
 				</button>
 			</div>
-		</div>
-	</nav>
+		</nav>
+	</div>
 </header>
 
-<style>
-	.header {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		background: rgba(255, 255, 255, 0.95);
-		backdrop-filter: blur(10px);
-		box-shadow: var(--shadow);
-		z-index: 1000;
-		transition: var(--transition);
-	}
-	
-	.nav {
-		padding: 1rem 0;
-	}
-	
-	.nav-content {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	
-	.logo h1 {
-		font-family: var(--font-heading);
-		font-size: 2rem;
-		color: var(--color-primary);
-		font-weight: 600;
-	}
-	
-	.nav-menu {
-		display: flex;
-		list-style: none;
-		gap: 2rem;
-		margin: 0;
-		padding: 0;
-	}
-	
-	.nav-link {
-		font-weight: 500;
-		color: var(--color-text);
-		transition: var(--transition);
-		position: relative;
-	}
-	
-	.nav-link:hover {
-		color: var(--color-primary);
-	}
-	
-	.nav-link::after {
-		content: '';
-		position: absolute;
-		bottom: -5px;
-		left: 0;
-		width: 0;
-		height: 2px;
-		background: var(--color-primary);
-		transition: var(--transition);
-	}
-	
-	.nav-link:hover::after {
-		width: 100%;
-	}
-	
-	.nav-toggle {
-		display: none;
-		flex-direction: column;
-		background: none;
-		border: none;
-		cursor: pointer;
-		padding: 0.5rem;
-		gap: 3px;
-	}
-	
-	.nav-toggle span {
-		width: 25px;
-		height: 3px;
-		background: var(--color-primary);
-		transition: var(--transition);
-	}
-	
-	@media (max-width: 768px) {
-		.nav-menu {
-			position: fixed;
-			top: 100%;
-			left: 0;
-			right: 0;
-			background: var(--color-white);
-			flex-direction: column;
-			padding: 2rem;
-			box-shadow: var(--shadow);
-			transform: translateY(-100%);
-			opacity: 0;
-			visibility: hidden;
-			transition: var(--transition);
-		}
-		
-		.nav-menu.active {
-			transform: translateY(0);
-			opacity: 1;
-			visibility: visible;
-		}
-		
-		.nav-toggle {
-			display: flex;
-		}
-		
-		.nav-toggle.active span:nth-child(1) {
-			transform: rotate(45deg) translate(5px, 5px);
-		}
-		
-		.nav-toggle.active span:nth-child(2) {
-			opacity: 0;
-		}
-		
-		.nav-toggle.active span:nth-child(3) {
-			transform: rotate(-45deg) translate(7px, -6px);
-		}
-	}
-</style>
-
 <script>
+	// Utilizziamo la delegazione degli eventi per assicurarci che funzioni
+	document.addEventListener('click', function(e) {
+		// Mobile menu toggle
+		if (e.target.closest('#mobile-toggle')) {
+			e.preventDefault();
+			e.stopPropagation();
+			
+			const mobileToggle = document.getElementById('mobile-toggle');
+			const navMenu = document.getElementById('nav-menu');
+			
+			if (mobileToggle && navMenu) {
+				mobileToggle.classList.toggle('active');
+				navMenu.classList.toggle('active');
+			}
+		}
+		
+		// Theme toggle
+		if (e.target.closest('#theme-toggle')) {
+			e.preventDefault();
+			e.stopPropagation();
+			
+			const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+			const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+			
+			// Apply new theme
+			document.documentElement.setAttribute('data-theme', newTheme);
+			document.body.setAttribute('data-theme', newTheme);
+			localStorage.setItem('theme', newTheme);
+		}
+		
+		// Close mobile menu when clicking on navigation links
+		if (e.target.closest('.nav-link')) {
+			const mobileToggle = document.getElementById('mobile-toggle');
+			const navMenu = document.getElementById('nav-menu');
+			
+			if (mobileToggle && navMenu) {
+				mobileToggle.classList.remove('active');
+				navMenu.classList.remove('active');
+			}
+		}
+	});
+
 	document.addEventListener('DOMContentLoaded', function() {
-		const navToggle = document.getElementById('nav-toggle');
-		const navMenu = document.getElementById('nav-menu');
+
+		// Active link highlighting and navigation logic
+		const currentPath = window.location.pathname;
+		const isHomePage = currentPath === '/' || currentPath === '/index.html';
 		
-		navToggle?.addEventListener('click', function() {
-			navMenu?.classList.toggle('active');
-			navToggle.classList.toggle('active');
-		});
-		
-		// Close menu when clicking on a link
 		document.querySelectorAll('.nav-link').forEach(link => {
-			link.addEventListener('click', () => {
-				navMenu?.classList.remove('active');
-				navToggle?.classList.remove('active');
-			});
+			const href = link.getAttribute('href');
+			if (!href) return;
+			
+			// Handle menu page link
+			if (href === '/menu/' && currentPath.includes('/menu')) {
+				link.classList.add('active');
+			}
+			// Handle home page anchor links
+			else if (href.startsWith('/#') && isHomePage) {
+				const anchor = href.substring(2); // Remove /#
+				if (window.location.hash === `#${anchor}`) {
+					link.classList.add('active');
+				}
+			}
+			// Handle direct homepage link
+			else if (href === '/#home' && isHomePage && !window.location.hash) {
+				link.classList.add('active');
+			}
 		});
-		
-		// Smooth scroll for anchor links
-		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-			anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
+
+		// Smart navigation: if we're not on homepage and clicking anchor link, go to homepage first
+		document.querySelectorAll('a[href^="/#"]').forEach(link => {
+			link.addEventListener('click', function(e) {
+				const href = link.getAttribute('href');
+				if (!href) return;
+				
+				const isCurrentlyHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+				
+				if (!isCurrentlyHomePage) {
+					// If we're not on homepage, navigate to homepage with the anchor
+					window.location.href = href;
+					return;
+				}
+				
+				// If we're already on homepage, smooth scroll to anchor
 				e.preventDefault();
-				const href = this.getAttribute('href');
-				if (href) {
-					const target = document.querySelector(href);
-					if (target) {
-						const header = document.querySelector('.header');
-						const headerHeight = header instanceof HTMLElement ? header.offsetHeight : 80;
-						const targetPosition = target instanceof HTMLElement ? target.offsetTop - headerHeight : 0;
-						
-						window.scrollTo({
-							top: targetPosition,
-							behavior: 'smooth'
-						});
-					}
+				const targetId = href.substring(2); // Remove /#
+				const target = document.getElementById(targetId);
+				if (target) {
+					const headerHeight = window.innerWidth >= 768 ? 70 : 60;
+					const targetPosition = target.offsetTop - headerHeight;
+					
+					window.scrollTo({
+						top: targetPosition,
+						behavior: 'smooth'
+					});
+					
+					// Update URL hash
+					history.pushState(null, '', href);
 				}
 			});
+		});
+
+		// Handle hash changes for active link highlighting
+		window.addEventListener('hashchange', function() {
+			// Remove all active classes
+			document.querySelectorAll('.nav-link').forEach(link => {
+				link.classList.remove('active');
+			});
+			
+			// Add active class to current hash link
+			const currentHash = window.location.hash;
+			if (currentHash) {
+				const activeLink = document.querySelector(`a[href="/${currentHash}"]`);
+				if (activeLink) {
+					activeLink.classList.add('active');
+				}
+			} else {
+				// If no hash, activate home link
+				const homeLink = document.querySelector('a[href="/#home"]');
+				if (homeLink) {
+					homeLink.classList.add('active');
+				}
+			}
 		});
 	});
 </script>

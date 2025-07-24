@@ -1,0 +1,223 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Scripts from '../components/Scripts.astro';
+import DarkModeToggle from '../components/DarkModeToggle.astro';
+---
+
+<Layout title="Privacy Policy - Bar Chantilly Carmagnola" description="Informativa sulla privacy del Bar Chantilly Carmagnola. Non raccogliamo dati personali dei visitatori.">
+	<!-- Skip link for accessibility -->
+	<a href="#main" class="skip-link">Vai al contenuto principale</a>
+	
+	<DarkModeToggle />
+	<Header />
+	<main id="main" class="privacy-page">
+		<section class="privacy-hero">
+			<div class="container">
+				<div class="hero-content">
+					<h1 class="hero-title">Privacy Policy</h1>
+					<p class="hero-subtitle">Informativa sulla privacy e protezione dei dati</p>
+				</div>
+			</div>
+		</section>
+		
+		<section class="privacy-content section">
+			<div class="container">
+				<div class="content-wrapper">
+					<div class="privacy-section">
+						<h2>1. Introduzione</h2>
+						<p>
+							Il presente documento illustra la privacy policy del sito web di <strong>Bar Chantilly</strong> 
+							(Viale Barbaroux, 68 - 10022 Carmagnola TO), in conformità con il Regolamento Generale 
+							sulla Protezione dei Dati (GDPR) UE 2016/679.
+						</p>
+					</div>
+					
+					<div class="privacy-section">
+						<h2>2. Titolare del Trattamento</h2>
+						<p><strong>Bar Chantilly</strong></p>
+						<p>Viale Barbaroux, 68 - 10022 Carmagnola (TO)</p>
+						<p>Telefono: <a href="tel:+390112966215">011 296 6215</a></p>
+					</div>
+					
+					<div class="privacy-section">
+						<h2>3. Dati Raccolti</h2>
+						<p>
+							<strong>Il nostro sito web NON raccoglie alcun dato personale degli utenti.</strong>
+						</p>
+						<ul>
+							<li>Non utilizziamo cookie di tracciamento</li>
+							<li>Non raccogliamo indirizzi email</li>
+							<li>Non memorizziamo informazioni personali</li>
+							<li>Non utilizziamo sistemi di analytics che raccolgono dati personali</li>
+						</ul>
+					</div>
+					
+					<div class="privacy-section">
+						<h2>4. Cookie</h2>
+						<p>
+							Il sito utilizza esclusivamente cookie tecnici necessari per il funzionamento:
+						</p>
+						<ul>
+							<li><strong>Preferenza tema</strong>: per ricordare la scelta tra modalità chiara/scura</li>
+							<li><strong>Cookie di sessione</strong>: per il corretto funzionamento del sito</li>
+						</ul>
+						<p>
+							Questi cookie non raccolgono informazioni personali e non richiedono consenso 
+							secondo la normativa vigente.
+						</p>
+					</div>
+					
+					<div class="privacy-section">
+						<h2>5. Navigazione</h2>
+						<p>
+							Durante la navigazione, il server web può registrare automaticamente:
+						</p>
+						<ul>
+							<li>Indirizzo IP (anonimizzato)</li>
+							<li>Tipo di browser utilizzato</li>
+							<li>Pagine visitate</li>
+							<li>Data e ora di accesso</li>
+						</ul>
+						<p>
+							Questi dati sono utilizzati esclusivamente per scopi tecnici e di sicurezza 
+							e vengono eliminati automaticamente dopo 30 giorni.
+						</p>
+					</div>
+					
+					<div class="privacy-section">
+						<h2>6. Diritti dell'Utente</h2>
+						<p>
+							Anche se non raccogliamo dati personali, hai comunque il diritto di:
+						</p>
+						<ul>
+							<li>Richiedere informazioni sui dati eventualmente trattati</li>
+							<li>Presentare reclamo all'Autorità Garante per la Protezione dei Dati Personali</li>
+							<li>Contattarci per qualsiasi chiarimento sulla privacy</li>
+						</ul>
+					</div>
+					
+					<div class="privacy-section">
+						<h2>7. Contatti per la Privacy</h2>
+						<p>
+							Per qualsiasi domanda riguardante la privacy o questa informativa, 
+							puoi contattarci:
+						</p>
+						<ul>
+							<li>Telefono: <a href="tel:+390112966215">011 296 6215</a></li>
+							<li>Di persona presso: Viale Barbaroux, 68 - Carmagnola (TO)</li>
+						</ul>
+					</div>
+					
+					<div class="privacy-section">
+						<h2>8. Aggiornamenti</h2>
+						<p>
+							Questa privacy policy può essere aggiornata per riflettere cambiamenti 
+							nelle nostre pratiche o per altri motivi operativi, legali o normativi.
+						</p>
+						<p><strong>Ultimo aggiornamento:</strong> 24 Luglio 2025</p>
+					</div>
+					
+					<div class="back-to-home">
+						<a href="/" class="btn btn-outline">← Torna al Sito</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+	<Scripts />
+</Layout>
+
+<style>
+	.privacy-page {
+		padding-top: 80px;
+	}
+	
+	.privacy-hero {
+		background: linear-gradient(135deg, var(--color-warm) 0%, var(--color-accent) 100%);
+		padding: 3rem 0;
+		text-align: center;
+	}
+	
+	.hero-title {
+		font-size: 3rem;
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+	}
+	
+	.hero-subtitle {
+		font-size: 1.2rem;
+		color: var(--color-text-light);
+		max-width: 600px;
+		margin: 0 auto;
+	}
+	
+	.privacy-content {
+		background: var(--color-background);
+	}
+	
+	.content-wrapper {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	
+	.privacy-section {
+		margin-bottom: 2.5rem;
+		padding: 2rem;
+		background: var(--color-surface);
+		border-radius: var(--border-radius-lg);
+		box-shadow: var(--shadow);
+	}
+	
+	.privacy-section h2 {
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+		font-size: 1.5rem;
+	}
+	
+	.privacy-section p {
+		margin-bottom: 1rem;
+		line-height: 1.7;
+		color: var(--color-text);
+	}
+	
+	.privacy-section ul {
+		margin: 1rem 0;
+		padding-left: 2rem;
+	}
+	
+	.privacy-section li {
+		margin-bottom: 0.5rem;
+		color: var(--color-text);
+	}
+	
+	.privacy-section a {
+		color: var(--color-primary);
+		text-decoration: underline;
+	}
+	
+	.privacy-section a:hover {
+		color: var(--color-secondary);
+	}
+	
+	.back-to-home {
+		text-align: center;
+		margin-top: 3rem;
+	}
+	
+	@media (max-width: 768px) {
+		.hero-title {
+			font-size: 2.5rem;
+		}
+		
+		.privacy-section {
+			padding: 1.5rem;
+		}
+		
+		.content-wrapper {
+			padding: 0 1rem;
+		}
+	}
+</style>

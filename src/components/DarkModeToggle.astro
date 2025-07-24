@@ -1,0 +1,132 @@
+---
+---
+
+<button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Attiva/Disattiva modalità scura">
+	<span class="sun-icon">☀️</span>
+	<span class="moon-icon">🌙</span>
+</button>
+
+<style>
+	.dark-mode-toggle {
+		position: fixed;
+		top: 50%;
+		right: 1.5rem;
+		transform: translateY(-50%);
+		width: 55px;
+		height: 55px;
+		border-radius: 50%;
+		background: var(--color-white);
+		border: 3px solid #000000;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.4rem;
+		z-index: 10000;
+		transition: var(--transition);
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+	}
+	
+	.dark-mode-toggle:hover {
+		transform: translateY(-50%) scale(1.1);
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+		border-color: #ffcc00;
+		background: rgba(255, 204, 0, 0.1);
+	}
+	
+	[data-theme="dark"] .dark-mode-toggle {
+		background: #1a1a1a;
+		border-color: #ffcc00;
+		box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+	}
+	
+	[data-theme="dark"] .dark-mode-toggle:hover {
+		background: rgba(255, 204, 0, 0.2);
+		border-color: #ffcc00;
+		box-shadow: 0 8px 30px rgba(255, 204, 0, 0.6);
+	}
+	
+	.sun-icon,
+	.moon-icon {
+		position: absolute;
+		transition: var(--transition);
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+	}
+	
+	.dark-mode-toggle .moon-icon {
+		opacity: 0;
+		transform: rotate(180deg) scale(0.8);
+	}
+	
+	[data-theme="dark"] .dark-mode-toggle .sun-icon {
+		opacity: 0;
+		transform: rotate(180deg) scale(0.8);
+	}
+	
+	[data-theme="dark"] .dark-mode-toggle .moon-icon {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+		filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.5));
+	}
+	
+	[data-theme="dark"] .dark-mode-toggle {
+		background: var(--color-surface);
+		border-color: var(--color-primary);
+		box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+	}
+	
+	@media (max-width: 768px) {
+		.dark-mode-toggle {
+			top: 1rem;
+			right: 1rem;
+			transform: none;
+			width: 50px;
+			height: 50px;
+			font-size: 1.2rem;
+		}
+		
+		.dark-mode-toggle:hover {
+			transform: scale(1.1);
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.dark-mode-toggle {
+			top: 0.75rem;
+			right: 0.75rem;
+			width: 45px;
+			height: 45px;
+			font-size: 1.1rem;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const toggle = document.getElementById('dark-mode-toggle');
+		const html = document.documentElement;
+		
+		// Controlla la preferenza salvata o del sistema
+		const savedTheme = localStorage.getItem('theme');
+		const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		
+		const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+		html.setAttribute('data-theme', currentTheme);
+		
+		// Toggle al click
+		toggle?.addEventListener('click', () => {
+			const currentTheme = html.getAttribute('data-theme');
+			const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+			
+			html.setAttribute('data-theme', newTheme);
+			localStorage.setItem('theme', newTheme);
+		});
+		
+		// Ascolta i cambiamenti delle preferenze del sistema
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			if (!localStorage.getItem('theme')) {
+				html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+			}
+		});
+	});
+</script>
