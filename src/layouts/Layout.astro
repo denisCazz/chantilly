@@ -4,7 +4,7 @@ export interface Props {
 	description?: string;
 }
 
-const { title, description = "Bar Tabaccheria Chantilly - Viale Barbaroux, 68, Carmagnola. Bar elegante e accogliente con servizi di tabaccheria, ricariche telefoniche, punto Sisal e molto altro." } = Astro.props;
+const { title, description = "Bar Chantilly Carmagnola - Caffè di qualità, tabaccheria, punto Sisal, ricariche telefoniche. Viale Barbaroux 68, Carmagnola TO. Aperto 7 giorni su 7." } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -13,6 +13,9 @@ const { title, description = "Bar Tabaccheria Chantilly - Viale Barbaroux, 68, C
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
+		<meta name="keywords" content="bar carmagnola, tabaccheria carmagnola, caffè carmagnola, punto sisal, ricariche telefoniche, viale barbaroux" />
+		<meta name="author" content="Bar Chantilly" />
+		<meta name="robots" content="index, follow" />
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- Open Graph -->
@@ -20,6 +23,37 @@ const { title, description = "Bar Tabaccheria Chantilly - Viale Barbaroux, 68, C
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://bar-chantilly.it" />
+		<meta property="og:locale" content="it_IT" />
+		
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		
+		<!-- Local Business Schema -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "BarOrPub",
+			"name": "Bar Chantilly",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "Viale Barbaroux, 68",
+				"addressLocality": "Carmagnola",
+				"addressRegion": "TO",
+				"postalCode": "10022",
+				"addressCountry": "IT"
+			},
+			"telephone": "+39 011 296 6215",
+			"openingHours": [
+				"Mo-Tu 07:00-19:30",
+				"Th-Sa 07:00-19:30",
+				"Su 08:00-13:00"
+			],
+			"servedCuisine": "Caffè",
+			"priceRange": "€"
+		}
+		</script>
 		
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -36,12 +70,12 @@ const { title, description = "Bar Tabaccheria Chantilly - Viale Barbaroux, 68, C
 		
 		<style is:global>
 			:root {
-				--color-primary: #8B4513;
-				--color-secondary: #D2691E;
-				--color-accent: #F4A460;
-				--color-warm: #FFF8DC;
-				--color-text: #2C1810;
-				--color-text-light: #6B4423;
+				--color-primary: #1a1a1a;
+				--color-secondary: #333333;
+				--color-accent: #ffd700;
+				--color-warm: #fffef7;
+				--color-text: #1a1a1a;
+				--color-text-light: #666666;
 				--color-white: #FFFFFF;
 				--color-gray-light: #F5F5F5;
 				--color-gray: #E0E0E0;

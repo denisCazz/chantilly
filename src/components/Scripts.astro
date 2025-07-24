@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #8B4513;
+    background: #1a1a1a;
     color: white;
     border: none;
     font-size: 1.2rem;
@@ -50,12 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hover effect for scroll button
   scrollToTopBtn.addEventListener('mouseenter', () => {
-    scrollToTopBtn.style.background = '#D2691E';
+    scrollToTopBtn.style.background = '#333333';
     scrollToTopBtn.style.transform = 'translateY(-2px)';
   });
 
   scrollToTopBtn.addEventListener('mouseleave', () => {
-    scrollToTopBtn.style.background = '#8B4513';
+    scrollToTopBtn.style.background = '#1a1a1a';
     scrollToTopBtn.style.transform = 'translateY(0)';
   });
 
@@ -125,14 +125,14 @@ if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').m
 }
 
 *:focus-visible {
-  outline: 2px solid #8B4513;
+  outline: 2px solid #1a1a1a;
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid #8B4513;
+  outline: 2px solid #1a1a1a;
   outline-offset: 2px;
 }
 </style>

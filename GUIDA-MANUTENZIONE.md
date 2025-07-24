@@ -84,10 +84,10 @@ npm run preview
 I colori sono definiti in `/src/layouts/Layout.astro`:
 ```css
 :root {
-  --color-primary: #8B4513;    /* Marrone elegante */
-  --color-secondary: #D2691E;  /* Arancione caldo */
-  --color-accent: #F4A460;     /* Beige chiaro */
-  --color-warm: #FFF8DC;       /* Crema */
+  --color-primary: #1a1a1a;    /* Nero elegante */
+  --color-secondary: #333333;  /* Grigio scuro */
+  --color-accent: #ffd700;     /* Oro */
+  --color-warm: #fffef7;       /* Crema chiaro */
 }
 ```
 

@@ -1,5 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://bar-chantilly.it/sitemap.xml
+
+# Specific crawl instructions
+Crawl-delay: 1
 
 # Sitemap
 Sitemap: https://bar-chantilly.it/sitemap.xml

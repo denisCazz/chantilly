@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import Scripts from '../../components/Scripts.astro';
 ---
 
-<Layout title="Menu - Bar Tabaccheria Chantilly | Prezzi e Prodotti" description="Menu completo del Bar Chantilly: caffè, bevande, colazioni, dolci e snack. Prezzi aggiornati e prodotti freschi nel cuore di Carmagnola.">
+<Layout title="Menu Bar Chantilly Carmagnola | Caffè, Prezzi, Colazioni" description="Menu completo Bar Chantilly Carmagnola: caffè €1,20, cappuccino €1,50, colazioni, bevande. Prezzi aggiornati 2025. Viale Barbaroux 68.">
 	<!-- Skip link for accessibility -->
 	<a href="#main" class="skip-link">Vai al contenuto principale</a>
 	
@@ -14,8 +14,8 @@ import Scripts from '../../components/Scripts.astro';
 		<section class="hero-menu">
 			<div class="container">
 				<div class="hero-content">
-					<h1 class="hero-title">Il Nostro Menu</h1>
-					<p class="hero-subtitle">Selezione di prodotti freschi e di qualità per ogni momento della giornata</p>
+					<h1 class="hero-title">Menu</h1>
+					<p class="hero-subtitle">Qualità e freschezza</p>
 				</div>
 			</div>
 		</section>
@@ -234,33 +234,6 @@ import Scripts from '../../components/Scripts.astro';
 							</div>
 						</div>
 					</div>
-
-					<div class="menu-category special-offers">
-						<h2 class="category-title">🎁 Offerte Speciali</h2>
-						<div class="menu-items">
-							<div class="menu-item featured">
-								<div class="item-info">
-									<span class="item-name">Colazione Completa</span>
-									<span class="item-description">Cappuccino + cornetto farcito</span>
-								</div>
-								<span class="item-price">€2,50</span>
-							</div>
-							<div class="menu-item featured">
-								<div class="item-info">
-									<span class="item-name">Pausa Caffè</span>
-									<span class="item-description">Espresso + pasticcino</span>
-								</div>
-								<span class="item-price">€2,80</span>
-							</div>
-							<div class="menu-item featured">
-								<div class="item-info">
-									<span class="item-name">Aperitivo</span>
-									<span class="item-description">Spritz + stuzzichini</span>
-								</div>
-								<span class="item-price">€5,00</span>
-							</div>
-						</div>
-					</div>
 				</div>
 				
 				<div class="menu-footer">
@@ -330,11 +303,6 @@ import Scripts from '../../components/Scripts.astro';
 		box-shadow: var(--shadow-lg);
 	}
 	
-	.special-offers {
-		background: linear-gradient(135deg, var(--color-warm) 0%, var(--color-accent) 100%);
-		border: 2px solid var(--color-secondary);
-	}
-	
 	.category-title {
 		font-size: 1.5rem;
 		color: var(--color-primary);
@@ -367,16 +335,6 @@ import Scripts from '../../components/Scripts.astro';
 	.menu-item:hover {
 		background: var(--color-warm);
 		transform: translateX(5px);
-	}
-	
-	.menu-item.featured {
-		background: var(--color-white);
-		border: 1px solid var(--color-secondary);
-		margin-bottom: 0.5rem;
-	}
-	
-	.menu-item.featured:hover {
-		background: var(--color-accent);
 	}
 	
 	.item-info {

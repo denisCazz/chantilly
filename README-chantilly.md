@@ -55,10 +55,10 @@ Il sito è ottimizzato per:
 ## 🎨 Design System
 
 ### Colori
-- **Primario**: #8B4513 (Marrone elegante)
-- **Secondario**: #D2691E (Arancione caldo)
-- **Accent**: #F4A460 (Beige chiaro)
-- **Caldo**: #FFF8DC (Crema)
+- **Primario**: #1a1a1a (Nero elegante)
+- **Secondario**: #333333 (Grigio scuro)
+- **Accent**: #ffd700 (Oro)
+- **Caldo**: #fffef7 (Crema chiaro)
 
 ### Tipografia
 - **Heading**: Playfair Display (serif elegante)
