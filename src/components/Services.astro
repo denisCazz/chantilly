@@ -37,7 +37,7 @@
 					</svg>
 				</div>
 				<h3>Tabaccheria</h3>
-				<p>Un vasto assortimento di sigarette, sigari, tabacchi e tutti gli accessori per fumatori di cui hai bisogno.</p>
+				<p>Un vasto assortimento di sigarette, sigari, tabacchi, ricariche telefoniche per tutti gli operatori e pagamenti. Tutto in un unico posto.</p>
 			</div>
 			
 			<div class="service-card">
@@ -55,17 +55,17 @@
 			
 			<div class="service-card">
 				<div class="service-icon">
-					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-mobile-message" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-world" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-						<path d="M11 3h10v8h-3l-4 2v-2h-3z" />
-						<path d="M15 16v4" />
-						<path d="M12 18h6" />
-						<path d="M16 11.5v-4.5" />
-						<path d="M8 12v-6.5a2.5 2.5 0 0 0 -5 0v12.5a2.5 2.5 0 0 0 5 0v-2" />
+						<path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+						<path d="M3.6 9h16.8" />
+						<path d="M3.6 15h16.8" />
+						<path d="M11.5 3a17 17 0 0 0 0 18" />
+						<path d="M12.5 3a17 17 0 0 1 0 18" />
 					</svg>
 				</div>
-				<h3>Ricariche e Pagamenti</h3>
-				<p>Effettua ricariche telefoniche per tutti gli operatori e paga bollettini in modo rapido e sicuro.</p>
+				<h3>Invio Denaro all'Estero</h3>
+				<p>Servizio rapido e sicuro per spedire denaro all'estero tramite MoneyGram e Western Union.</p>
 			</div>
 			
 			<div class="service-card">
@@ -80,8 +80,8 @@
 						<path d="M16 11.5l0 3" />
 					</svg>
 				</div>
-				<h3>Punto Ritiro Amazon/BRT</h3>
-				<p>Ritira comodamente i tuoi pacchi Amazon e spedizioni BRT direttamente da noi, senza attese a casa.</p>
+				<h3>Punto Ritiro Amazon</h3>
+				<p>Ritira comodamente i tuoi pacchi Amazon direttamente da noi, senza attese a casa.</p>
 			</div>
 			
 			<div class="service-card special">
@@ -131,8 +131,8 @@
 	}
 
 	.service-card {
-		background: var(--color-background);
-		border: 1px solid var(--color-border);
+		background: #f0f9f0;
+		border: 1px solid #90ee90;
 		border-radius: var(--border-radius-lg);
 		padding: 2.5rem 2rem;
 		text-align: center;
@@ -146,26 +146,37 @@
 	}
 
 	[data-theme="dark"] .service-card {
-		background: var(--color-surface);
-		border-color: var(--color-border-dark);
+		background: #1a2a1a;
+		border-color: #4a7c59;
 	}
 
 	.service-card:hover {
 		transform: translateY(-8px);
-		box-shadow: var(--shadow-lg);
-		border-color: var(--color-primary);
+		box-shadow: 0 8px 32px rgba(34, 139, 34, 0.2);
+		border-color: #32cd32;
+		background: #e8f5e8;
+	}
+
+	[data-theme="dark"] .service-card:hover {
+		background: #0f1f0f;
+		border-color: #5cb85c;
 	}
 
 	.service-icon {
-		color: var(--color-primary);
+		color: #228b22;
 		margin-bottom: 0.5rem;
-		background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
+		background-color: rgba(34, 139, 34, 0.15);
 		width: 70px;
 		height: 70px;
 		border-radius: 50%;
 		display: grid;
 		place-items: center;
 		flex-shrink: 0;
+	}
+
+	[data-theme="dark"] .service-icon {
+		color: #90ee90;
+		background-color: rgba(144, 238, 144, 0.2);
 	}
 	
 	.service-icon svg {
