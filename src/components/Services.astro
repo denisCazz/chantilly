@@ -199,13 +199,18 @@
 	}
 
 	.service-card.special {
-		background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+		background: linear-gradient(135deg, #32cd32, #228b22);
 		color: var(--color-white);
-		border: none;
+		border: 1px solid #90ee90;
+	}
+
+	[data-theme="dark"] .service-card.special {
+		background: linear-gradient(135deg, #228b22, #006400);
+		border-color: #4a7c59;
 	}
 
 	.service-card.special .service-icon {
-		background-color: rgba(255, 255, 255, 0.2);
+		background-color: rgba(255, 255, 255, 0.25);
 		color: var(--color-white);
 	}
 
@@ -214,7 +219,7 @@
 	}
 
 	.service-card.special p {
-		color: rgba(255, 255, 255, 0.9);
+		color: rgba(255, 255, 255, 0.95);
 	}
 
 	@media (max-width: 768px) {

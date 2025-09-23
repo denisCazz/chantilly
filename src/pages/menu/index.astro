@@ -21,12 +21,22 @@ import { Icon } from 'astro-icon/components';
 				<div class="hero-content">
 					<h1 class="hero-title">Il Nostro Menu</h1>
 					<p class="hero-subtitle">Caffè di qualità, snack freschi e tutto quello che serve per la tua giornata.</p>
+					<div class="search-container">
+						<input 
+							type="text" 
+							id="menu-search" 
+							placeholder="🔍 Cerca nel menu..." 
+							class="search-input"
+						/>
+					</div>
 				</div>
 			</div>
 		</section>
 
 		<section class="menu-grid">
 			<div class="container">
+				<div class="menu-columns">
+					<div class="menu-column">
 				<div class="category-card">
 					<h2 class="category-title">
 						<Icon name="mdi:coffee-outline" />
@@ -36,95 +46,92 @@ import { Icon } from 'astro-icon/components';
 						<li class="menu-item">
 							<span class="item-name">Espresso</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€1.20</span>
+							<span class="item-price">€1,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Corretto</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€1,20</span>
 						</li>
 						<li class="menu-item">
 							<span class="item-name">Cappuccino</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€1.80</span>
+							<span class="item-price">€1,40</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Caffè Macchiato</span>
+							<span class="item-name">Cappuccino soia/avena</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€1.30</span>
+							<span class="item-price">€2,00</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Latte Macchiato</span>
+							<span class="item-name">Caffè decaffeinato</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€2.00</span>
+							<span class="item-price">€1,00</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Americano</span>
+							<span class="item-name">Orzo</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€1.50</span>
+							<span class="item-price">€1,00</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Caffè d'Orzo</span>
+							<span class="item-name">Marocchino</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€1.50</span>
-						</li>
-					</ul>
-				</div>
-
-				<div class="category-card">
-					<h2 class="category-title">
-						<Icon name="mdi:tea" />
-						Bevande Calde
-					</h2>
-					<ul class="menu-items">
-						<li class="menu-item">
-							<span class="item-name">Tè & Infusi</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€2.00</span>
+							<span class="item-price">€1,60</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Cioccolata Calda</span>
+							<span class="item-name">Marocchino nutella</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€2.50</span>
+							<span class="item-price">€2,00</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Ginseng</span>
+							<span class="item-name">Latte bianco</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€2.00</span>
+							<span class="item-price">€1,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Latte macchiato</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€1,40</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Latte soia/avena</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€1,50</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Latte soia/avena macchiato</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€2,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Cioccolata calda</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€2,50</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Spremuta d'arancia</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,50</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Succhi</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€2,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Crema caffè</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€2,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Infusi e tisane</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€2,00</span>
 						</li>
 						<li class="menu-item">
 							<span class="item-name">Punch</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€2.50</span>
-						</li>
-					</ul>
-				</div>
-
-				<div class="category-card">
-					<h2 class="category-title">
-						<Icon name="mdi:bottle-soda-outline" />
-						Bevande Fredde
-					</h2>
-					<ul class="menu-items">
-						<li class="menu-item">
-							<span class="item-name">Bibite in Lattina</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€2.50</span>
-						</li>
-						<li class="menu-item">
-							<span class="item-name">Acqua Minerale</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€1.50</span>
-						</li>
-						<li class="menu-item">
-							<span class="item-name">Succhi di Frutta</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€2.80</span>
-						</li>
-						<li class="menu-item">
-							<span class="item-name">Tè Freddo</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€2.50</span>
-						</li>
-						<li class="menu-item">
-							<span class="item-name">Spremute Fresche</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€3.50</span>
+							<span class="item-price">€3,00</span>
 						</li>
 					</ul>
 				</div>
@@ -132,33 +139,300 @@ import { Icon } from 'astro-icon/components';
 				<div class="category-card">
 					<h2 class="category-title">
 						<Icon name="mdi:food-croissant" />
-						Colazioni & Snack
+						Brioches
 					</h2>
 					<ul class="menu-items">
 						<li class="menu-item">
-							<span class="item-name">Cornetto Semplice</span>
+							<span class="item-name">Vuote</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€1.30</span>
+							<span class="item-price">€1,40</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Cornetto Farcito</span>
+							<span class="item-name">Ripiene</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€1.60</span>
+							<span class="item-price">€1,40</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Toast Prosciutto & Formaggio</span>
+							<span class="item-name">Salate farcite</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€3.50</span>
+							<span class="item-price">€2,50</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Panini Farciti</span>
+							<span class="item-name">Biscotti</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€4.00</span>
+							<span class="item-price">€1,30</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="category-card">
+					<h2 class="category-title">
+						<Icon name="mdi:food" />
+						Tavola Fredda
+					</h2>
+					<ul class="menu-items">
+						<li class="menu-item">
+							<span class="item-name">Tramezzino</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€2,00</span>
 						</li>
 						<li class="menu-item">
-							<span class="item-name">Tramezzini</span>
+							<span class="item-name">Toast</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€2.50</span>
+							<span class="item-price">€3,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Focaccia</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€2,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Pizzetta</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€2,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Piadina</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€2,50</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Panini vari</span>
+							<span class="item-dots"></span>
+							<span class="item-price">da €4,00</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="category-card">
+					<h2 class="category-title">
+						<Icon name="mdi:leaf" />
+						Insalate
+					</h2>
+					<ul class="menu-items">
+						<li class="menu-item">
+							<span class="item-name">Insalata verde</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Insalata mista</span>
+							<span class="item-dots"></span>
+							<span class="item-price">da €3,50</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Aggiunta ingredienti</span>
+							<span class="item-dots"></span>
+							<span class="item-price">da €0,50</span>
+						</li>
+					</ul>
+					<div class="ingredients-section">
+						<h4 class="ingredients-title">Ingredienti disponibili:</h4>
+						<div class="ingredients-grid">
+							<span class="ingredient-tag">🍅 Pomodoro</span>
+							<span class="ingredient-tag">🧅 Cipolla</span>
+							<span class="ingredient-tag">🥕 Carote</span>
+							<span class="ingredient-tag">🌽 Mais</span>
+							<span class="ingredient-tag">🧀 Mozzarella</span>
+							<span class="ingredient-tag">🧀 Scaglie grana</span>
+							<span class="ingredient-tag">🫒 Olive</span>
+							<span class="ingredient-tag">🥒 Cetrioli</span>
+							<span class="ingredient-tag">🍞 Crostini</span>
+							<span class="ingredient-tag">🍗 Pollo</span>
+							<span class="ingredient-tag">🐟 Tonno</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="category-card">
+					<h2 class="category-title">
+						<Icon name="mdi:bottle-soda-outline" />
+						Bevande
+					</h2>
+					<ul class="menu-items">
+						<li class="menu-item">
+							<span class="item-name">Acqua</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€1,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Acqua con sciroppo</span>
+							<span class="item-dots"></span>
+							<span class="item-price">da €2,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Bibite in vetro</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Bibite in lattina</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Bibite in bottiglia 0,5 l</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Redbull</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Estathé in bric</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€1,50</span>
+						</li>
+					</ul>
+				</div>
+					</div>
+					
+					<div class="menu-column">
+				<div class="category-card">
+					<h2 class="category-title">
+						<Icon name="mdi:beer" />
+						Vini e Birre
+					</h2>
+					<ul class="menu-items">
+						<li class="menu-item">
+							<span class="item-name">Calice prosecco</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€4,50</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Calice vino fermo</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€4,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Birra alla spina bionda piccola</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,50</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Birra alla spina bionda media</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Birra alla spina rossa piccola</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,50</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Birra alla spina rossa media</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Birra in bottiglia</span>
+							<span class="item-dots"></span>
+							<span class="item-price">da €3,50</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="category-card">
+					<h2 class="category-title">
+						<Icon name="mdi:glass-cocktail" />
+						Aperitivo
+					</h2>
+					<ul class="menu-items">
+						<li class="menu-item">
+							<span class="item-name">Crodino</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Sanbitter</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Campari soda</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€3,50</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Martini bianco o rosso</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€4,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Aperol bitter</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€4,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Campari bitter</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€4,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Negroni</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Spritz</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Hugo</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Bellini (spumante brut + pesca)</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Rossini (spumante brut + fragola)</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Mimosa (spumante brut + arancia)</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="category-card">
+					<h2 class="category-title">
+						<Icon name="mdi:cocktail" />
+						Cocktail
+					</h2>
+					<ul class="menu-items">
+						<li class="menu-item">
+							<span class="item-name">Bombay lemon</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Cuba libre (ron-cola)</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Vodka lemon, redbull</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Coke e malibù</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
+						</li>
+						<li class="menu-item">
+							<span class="item-name">Mojito</span>
+							<span class="item-dots"></span>
+							<span class="item-price">€5,00</span>
 						</li>
 					</ul>
 				</div>
@@ -166,40 +440,74 @@ import { Icon } from 'astro-icon/components';
 				<div class="category-card">
 					<h2 class="category-title">
 						<Icon name="mdi:glass-wine" />
-						Aperitivi & Alcolici
+						Digestivi
 					</h2>
 					<ul class="menu-items">
 						<li class="menu-item">
-							<span class="item-name">Spritz</span>
+							<span class="item-name">Limoncello, mirto, ecc.</span>
 							<span class="item-dots"></span>
-							<span class="item-price">€4.50</span>
-						</li>
-						<li class="menu-item">
-							<span class="item-name">Negroni</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€5.00</span>
-						</li>
-						<li class="menu-item">
-							<span class="item-name">Birra alla Spina</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€3.50</span>
-						</li>
-						<li class="menu-item">
-							<span class="item-name">Vino al Bicchiere</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€3.00</span>
-						</li>
-						<li class="menu-item">
-							<span class="item-name">Amari</span>
-							<span class="item-dots"></span>
-							<span class="item-price">€3.50</span>
+							<span class="item-price">€2,00</span>
 						</li>
 					</ul>
+				</div>
+					</div>
 				</div>
 			</div>
 		</section>
 	</main>
 	<Scripts />
+	
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const searchInput = document.getElementById('menu-search') as HTMLInputElement;
+			const categoryCards = document.querySelectorAll('.category-card');
+			
+			if (!searchInput) return;
+			
+			searchInput.addEventListener('input', function() {
+				const searchTerm = searchInput.value.toLowerCase().trim();
+				
+				categoryCards.forEach(card => {
+					const categoryTitleElement = card.querySelector('.category-title');
+					if (!categoryTitleElement) return;
+					
+					const categoryTitle = categoryTitleElement.textContent?.toLowerCase() || '';
+					const menuItems = card.querySelectorAll('.menu-item');
+					let hasVisibleItems = false;
+					
+					// Se il termine di ricerca è vuoto, mostra tutto
+					if (searchTerm === '') {
+						(card as HTMLElement).style.display = 'block';
+						menuItems.forEach(item => {
+							(item as HTMLElement).style.display = 'flex';
+						});
+						return;
+					}
+					
+					// Controlla se il titolo della categoria corrisponde
+					const categoryMatches = categoryTitle.includes(searchTerm);
+					
+					menuItems.forEach(item => {
+						const itemNameElement = item.querySelector('.item-name');
+						if (!itemNameElement) return;
+						
+						const itemName = itemNameElement.textContent?.toLowerCase() || '';
+						const itemMatches = itemName.includes(searchTerm);
+						
+						if (itemMatches || categoryMatches) {
+							(item as HTMLElement).style.display = 'flex';
+							hasVisibleItems = true;
+						} else {
+							(item as HTMLElement).style.display = 'none';
+						}
+					});
+					
+					// Mostra/nascondi la categoria in base ai risultati
+					(card as HTMLElement).style.display = hasVisibleItems || categoryMatches ? 'block' : 'none';
+				});
+			});
+		});
+	</script>
 </Layout>
 
 <style>
@@ -247,7 +555,34 @@ import { Icon } from 'astro-icon/components';
 		font-size: clamp(1rem, 2.5vw, 1.25rem);
 		color: var(--color-text-offset);
 		max-width: 600px;
+		margin: 0 auto 2rem;
+	}
+	
+	.search-container {
+		max-width: 400px;
 		margin: 0 auto;
+	}
+	
+	.search-input {
+		width: 100%;
+		padding: 1rem 1.5rem;
+		font-size: 1rem;
+		border: 2px solid var(--color-border);
+		border-radius: 50px;
+		background: var(--color-bg);
+		color: var(--color-text);
+		transition: all 0.3s ease;
+		outline: none;
+	}
+	
+	.search-input:focus {
+		border-color: #4caf50;
+		box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+		transform: translateY(-2px);
+	}
+	
+	.search-input::placeholder {
+		color: var(--color-text-secondary);
 	}
 
 	/* Menu Grid Section */
@@ -256,18 +591,30 @@ import { Icon } from 'astro-icon/components';
 	}
 
 	.menu-grid .container {
+		max-width: 1200px;
+	}
+	
+	.menu-columns {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: start;
+	}
+	
+	.menu-column {
+		display: flex;
+		flex-direction: column;
 		gap: 2rem;
 	}
 
 	.category-card {
 		background-color: var(--color-bg);
 		border-radius: var(--border-radius-lg);
-		padding: 2rem;
+		padding: 2.5rem;
 		box-shadow: var(--shadow-sm);
 		border: 1px solid var(--color-border);
 		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		min-height: fit-content;
 	}
 
 	.category-card:hover {
@@ -302,8 +649,9 @@ import { Icon } from 'astro-icon/components';
 		display: flex;
 		align-items: baseline;
 		justify-content: space-between;
-		padding: 0.75rem 0;
+		padding: 1rem 0;
 		border-bottom: 1px dashed var(--color-border);
+		min-height: 2.5rem;
 	}
 
 	.menu-item:last-child {
@@ -330,7 +678,51 @@ import { Icon } from 'astro-icon/components';
 		color: var(--color-primary);
 		flex-shrink: 0;
 	}
+	
+	.ingredients-section {
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px dashed var(--color-border);
+	}
+	
+	.ingredients-title {
+		font-size: 1rem;
+		color: var(--color-text);
+		margin-bottom: 1rem;
+		font-weight: 600;
+	}
+	
+	.ingredients-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	
+	.ingredient-tag {
+		display: inline-block;
+		background: linear-gradient(135deg, #e8f5e8, #f0f9f0);
+		color: #2d5a2d;
+		padding: 0.4rem 0.8rem;
+		border-radius: 20px;
+		font-size: 0.85rem;
+		font-weight: 500;
+		border: 1px solid #c8e6c9;
+		transition: all 0.2s ease;
+	}
+	
+	.ingredient-tag:hover {
+		background: linear-gradient(135deg, #c8e6c9, #e8f5e8);
+		transform: translateY(-1px);
+		box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+	}
 
+	@media (max-width: 968px) {
+		.menu-columns {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+	
 	@media (max-width: 768px) {
 		.menu-hero {
 			padding: 4rem 1rem;
@@ -338,11 +730,24 @@ import { Icon } from 'astro-icon/components';
 		.menu-grid {
 			padding: 2rem 0;
 		}
-		.menu-grid .container {
-			gap: 1.5rem;
+		.category-card {
+			padding: 2rem;
 		}
+	}
+	
+	@media (max-width: 480px) {
 		.category-card {
 			padding: 1.5rem;
+		}
+		.menu-item {
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+		.item-dots {
+			display: none;
+		}
+		.item-price {
+			margin-left: auto;
 		}
 	}
 </style>
