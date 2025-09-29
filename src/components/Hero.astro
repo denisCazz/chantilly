@@ -36,12 +36,12 @@ import { Icon } from 'astro-icon/components';
 		justify-content: center;
 		text-align: center;
 		overflow: hidden;
-		background: var(--color-bg-light);
+		background: radial-gradient(circle at top, rgba(212, 175, 55, 0.24), rgba(219, 242, 176, 0.3) 55%, transparent 75%), var(--color-bg-light);
 		padding: 0 2rem;
 	}
 
 	[data-theme="dark"] .hero {
-		background: var(--color-bg-dark);
+		background: radial-gradient(circle at top, rgba(212, 175, 55, 0.2), rgba(38, 66, 36, 0.55) 60%, transparent 80%), var(--color-bg-dark);
 	}
 
 	.hero-content {
@@ -87,37 +87,40 @@ import { Icon } from 'astro-icon/components';
 	.btn {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.8rem 1.8rem;
+		gap: 0.65rem;
+		padding: 0.85rem 2rem;
 		border-radius: var(--border-radius-full);
 		font-weight: 600;
 		text-decoration: none;
-		transition: all 0.3s ease;
+		transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 		box-shadow: var(--shadow-sm);
 	}
 
 	.btn:hover {
-		transform: translateY(-2px);
+		transform: translateY(-3px);
 		box-shadow: var(--shadow-md);
 	}
 
 	.btn-primary {
-		background-color: var(--color-primary);
-		color: white;
+		background-color: var(--color-secondary);
+		color: var(--color-white);
+		border: 1px solid var(--color-secondary);
 	}
 
 	.btn-primary:hover {
-		background-color: hsl(var(--color-primary-hsl), 0.5, 0.55);
+		background-color: #c19c2f;
+		border-color: #c19c2f;
 	}
 
 	.btn-secondary {
-		background-color: var(--color-bg-offset);
+		background-color: var(--color-highlight);
 		color: var(--color-text);
 		border: 1px solid var(--color-border);
 	}
 
 	.btn-secondary:hover {
-		background-color: var(--color-bg-offset-2);
+		background-color: var(--color-bg-offset);
+		border-color: var(--color-border-strong);
 	}
 
 	@keyframes float {

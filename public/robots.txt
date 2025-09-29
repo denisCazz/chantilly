@@ -3,14 +3,8 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-# Sitemap
-Sitemap: https://bar-chantilly.it/sitemap.xml
-
-# Specific crawl instructions
+# Crawl instructions
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://bar-chantilly.it/sitemap.xml
-
-# Crawl delay
-Crawl-delay: 1
+Sitemap: https://bartabacchichantilly.it/sitemap.xml

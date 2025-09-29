@@ -1,132 +1,266 @@
 ---
 ---
 
-<button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Attiva/Disattiva modalità scura">
-	<span class="sun-icon">☀️</span>
-	<span class="moon-icon">🌙</span>
-</button>
+<div class="theme-toggle-wrapper" data-theme-toggle>
+	<div class="theme-toggle" role="radiogroup" aria-label="Seleziona il tema">
+		<span class="theme-indicator" aria-hidden="true"></span>
+		<button class="theme-option" type="button" role="radio" data-mode="light" aria-checked="false" aria-label="Tema chiaro" title="Tema chiaro">
+			<span aria-hidden="true">☀️</span>
+		</button>
+		<button class="theme-option" type="button" role="radio" data-mode="system" aria-checked="false" aria-label="Tema di sistema" title="Tema di sistema">
+			<span aria-hidden="true">🖥️</span>
+		</button>
+		<button class="theme-option" type="button" role="radio" data-mode="dark" aria-checked="false" aria-label="Tema scuro" title="Tema scuro">
+			<span aria-hidden="true">🌙</span>
+		</button>
+	</div>
+</div>
 
 <style>
-	.dark-mode-toggle {
-		position: fixed;
-		top: 50%;
-		right: 1.5rem;
-		transform: translateY(-50%);
-		width: 55px;
-		height: 55px;
-		border-radius: 50%;
-		background: var(--color-white);
-		border: 3px solid #000000;
-		cursor: pointer;
+	.theme-toggle-wrapper {
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		font-size: 1.4rem;
-		z-index: 10000;
-		transition: var(--transition);
-		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+		gap: 0.75rem;
+		padding: 0.5rem 0;
 	}
-	
-	.dark-mode-toggle:hover {
-		transform: translateY(-50%) scale(1.1);
-		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-		border-color: #ffcc00;
-		background: rgba(255, 204, 0, 0.1);
+
+	.theme-toggle {
+		--option-count: 3;
+		--toggle-padding: 0.3rem;
+		position: relative;
+		display: flex;
+		align-items: stretch;
+		justify-content: space-between;
+		padding: var(--toggle-padding);
+		min-width: 180px;
+		border-radius: 999px;
+		border: 1px solid var(--color-border);
+		background: var(--color-background);
+		box-shadow: 0 8px 20px rgba(18, 18, 18, 0.08);
+		transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 	}
-	
-	[data-theme="dark"] .dark-mode-toggle {
-		background: #1a1a1a;
-		border-color: #ffcc00;
-		box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
-	}
-	
-	[data-theme="dark"] .dark-mode-toggle:hover {
-		background: rgba(255, 204, 0, 0.2);
-		border-color: #ffcc00;
-		box-shadow: 0 8px 30px rgba(255, 204, 0, 0.6);
-	}
-	
-	.sun-icon,
-	.moon-icon {
+
+	.theme-indicator {
 		position: absolute;
-		transition: var(--transition);
-		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+		top: var(--toggle-padding);
+		bottom: var(--toggle-padding);
+		left: var(--toggle-padding);
+		width: calc((100% - (var(--toggle-padding) * 2)) / var(--option-count));
+		border-radius: 999px;
+		background: linear-gradient(135deg, rgba(223, 245, 207, 0.95), rgba(191, 232, 165, 0.85));
+		box-shadow: 0 10px 26px rgba(191, 232, 165, 0.25);
+		transform: translateX(calc(var(--active-index, 0) * 100%));
+		transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+		pointer-events: none;
 	}
-	
-	.dark-mode-toggle .moon-icon {
-		opacity: 0;
-		transform: rotate(180deg) scale(0.8);
+
+	.theme-option {
+		flex: 1 1 auto;
+		position: relative;
+		display: grid;
+		place-items: center;
+		border: none;
+		background: transparent;
+		color: var(--color-text-secondary);
+		font-size: 1.15rem;
+		border-radius: 999px;
+		cursor: pointer;
+		transition: color 0.3s ease, transform 0.3s ease;
+		z-index: 1;
 	}
-	
-	[data-theme="dark"] .dark-mode-toggle .sun-icon {
-		opacity: 0;
-		transform: rotate(180deg) scale(0.8);
+
+	.theme-option span {
+		pointer-events: none;
 	}
-	
-	[data-theme="dark"] .dark-mode-toggle .moon-icon {
-		opacity: 1;
-		transform: rotate(0deg) scale(1);
-		filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.5));
+
+	.theme-option:hover {
+		transform: translateY(-1px);
 	}
-	
-	[data-theme="dark"] .dark-mode-toggle {
+
+	.theme-option[aria-checked="true"] {
+		color: var(--color-primary);
+	}
+
+	[data-theme="dark"] .theme-toggle {
 		background: var(--color-surface);
-		border-color: var(--color-primary);
-		box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+		border-color: rgba(212, 175, 55, 0.35);
+		box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
 	}
-	
-	@media (max-width: 768px) {
-		.dark-mode-toggle {
-			top: 1rem;
-			right: 1rem;
-			transform: none;
-			width: 50px;
-			height: 50px;
-			font-size: 1.2rem;
-		}
-		
-		.dark-mode-toggle:hover {
-			transform: scale(1.1);
-		}
+
+	[data-theme="dark"] .theme-indicator {
+		background: linear-gradient(135deg, rgba(33, 52, 33, 0.92), rgba(24, 36, 24, 0.9));
+		box-shadow: 0 12px 32px rgba(212, 175, 55, 0.22);
 	}
-	
-	@media (max-width: 480px) {
-		.dark-mode-toggle {
-			top: 0.75rem;
-			right: 0.75rem;
-			width: 45px;
-			height: 45px;
-			font-size: 1.1rem;
+
+	[data-theme="dark"] .theme-option[aria-checked="true"] {
+		color: var(--color-secondary);
+	}
+
+	.theme-option:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+
+	@media (max-width: 640px) {
+		.theme-toggle-wrapper {
+			justify-content: center;
+		}
+
+		.theme-toggle {
+			min-width: 160px;
 		}
 	}
 </style>
 
-<script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const toggle = document.getElementById('dark-mode-toggle');
-		const html = document.documentElement;
-		
-		// Controlla la preferenza salvata o del sistema
-		const savedTheme = localStorage.getItem('theme');
-		const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		
-		const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-		html.setAttribute('data-theme', currentTheme);
-		
-		// Toggle al click
-		toggle?.addEventListener('click', () => {
-			const currentTheme = html.getAttribute('data-theme');
-			const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-			
-			html.setAttribute('data-theme', newTheme);
-			localStorage.setItem('theme', newTheme);
+<script is:inline>
+	const STORAGE_KEY = 'theme';
+	const THEME_ATTR = 'data-theme';
+	const MODE_ATTR = 'data-theme-mode';
+	const LIGHT = 'light';
+	const DARK = 'dark';
+	const SYSTEM = 'system';
+	const MODES = [LIGHT, SYSTEM, DARK];
+
+	const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+	const storage = {
+		get() {
+			try {
+				return localStorage.getItem(STORAGE_KEY);
+			} catch {
+				return null;
+			}
+		},
+		set(value) {
+			try {
+				localStorage.setItem(STORAGE_KEY, value);
+			} catch {
+				// ignore storage errors (e.g. private mode)
+			}
+		}
+	};
+
+	const sanitizeMode = (value) => (MODES.includes(value) ? value : null);
+	const getEffectiveTheme = (mode) => (mode === SYSTEM ? (mediaQuery.matches ? DARK : LIGHT) : mode);
+
+	const setThemeAttributes = (effectiveTheme, mode) => {
+		const targets = [document.documentElement, document.body].filter(Boolean);
+		targets.forEach((node) => {
+			node.setAttribute(THEME_ATTR, effectiveTheme);
+			node.setAttribute(MODE_ATTR, mode);
 		});
-		
-		// Ascolta i cambiamenti delle preferenze del sistema
-		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-			if (!localStorage.getItem('theme')) {
-				html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+	};
+
+	const initThemeToggle = () => {
+		const container = document.querySelector('[data-theme-toggle] .theme-toggle');
+		if (!container) return;
+
+		const options = Array.from(container.querySelectorAll('.theme-option'));
+		if (options.length !== MODES.length) return;
+
+		let currentMode = sanitizeMode(storage.get()) ?? SYSTEM;
+
+		const updateUI = (mode) => {
+			const index = MODES.indexOf(mode);
+			container.style.setProperty('--active-index', String(Math.max(index, 0)));
+			options.forEach((btn) => {
+				const isActive = btn.dataset.mode === mode;
+				btn.setAttribute('aria-checked', String(isActive));
+				btn.setAttribute('tabindex', isActive ? '0' : '-1');
+				btn.classList.toggle('is-active', isActive);
+			});
+			container.dataset.activeMode = mode;
+		};
+
+		const applyMode = (mode, { persist = true } = {}) => {
+			const safeMode = sanitizeMode(mode) ?? SYSTEM;
+			currentMode = safeMode;
+			const effectiveTheme = getEffectiveTheme(safeMode);
+			setThemeAttributes(effectiveTheme, safeMode);
+			if (persist) {
+				storage.set(safeMode);
+			}
+			updateUI(safeMode);
+		};
+
+		applyMode(currentMode, { persist: false });
+
+		const focusMode = (mode) => {
+			const index = MODES.indexOf(mode);
+			if (index >= 0) {
+				options[index].focus();
+			}
+		};
+
+		options.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const requestedMode = sanitizeMode(btn.dataset.mode);
+				if (!requestedMode || requestedMode === currentMode) return;
+				applyMode(requestedMode);
+			});
+
+			btn.addEventListener('keydown', (event) => {
+				if (event.key === ' ' || event.key === 'Enter') {
+					event.preventDefault();
+					btn.click();
+				}
+			});
+		});
+
+		container.addEventListener('keydown', (event) => {
+			const currentIndex = MODES.indexOf(currentMode);
+			if (currentIndex < 0) return;
+
+			if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+				event.preventDefault();
+				const nextMode = MODES[(currentIndex + 1) % MODES.length];
+				applyMode(nextMode);
+				focusMode(nextMode);
+			} else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+				event.preventDefault();
+				const nextMode = MODES[(currentIndex - 1 + MODES.length) % MODES.length];
+				applyMode(nextMode);
+				focusMode(nextMode);
+			} else if (event.key === 'Home' || event.key === 'PageUp') {
+				event.preventDefault();
+				const firstMode = MODES[0];
+				applyMode(firstMode);
+				focusMode(firstMode);
+			} else if (event.key === 'End' || event.key === 'PageDown') {
+				event.preventDefault();
+				const lastMode = MODES[MODES.length - 1];
+				applyMode(lastMode);
+				focusMode(lastMode);
 			}
 		});
-	});
+
+		const onSystemThemeChange = () => {
+			if (currentMode !== SYSTEM) return;
+			applyMode(SYSTEM, { persist: false });
+		};
+
+		if (typeof mediaQuery.addEventListener === 'function') {
+			mediaQuery.addEventListener('change', onSystemThemeChange);
+		} else if (typeof mediaQuery.addListener === 'function') {
+			mediaQuery.addListener(onSystemThemeChange);
+		}
+
+		window.addEventListener('storage', (event) => {
+			if (event.key !== STORAGE_KEY) return;
+			const newValue = event.newValue;
+			if (newValue === null) {
+				applyMode(SYSTEM, { persist: false });
+				return;
+			}
+			const nextMode = sanitizeMode(newValue);
+			if (!nextMode) return;
+			applyMode(nextMode, { persist: false });
+		});
+	};
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initThemeToggle, { once: true });
+	} else {
+		initThemeToggle();
+	}
 </script>

@@ -15,12 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #1a1a1a;
-    color: white;
-    border: none;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-border);
     font-size: 1.2rem;
     cursor: pointer;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 16px 38px rgba(140, 75, 29, 0.2);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -50,12 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hover effect for scroll button
   scrollToTopBtn.addEventListener('mouseenter', () => {
-    scrollToTopBtn.style.background = '#333333';
+    scrollToTopBtn.style.background = 'var(--color-secondary)';
     scrollToTopBtn.style.transform = 'translateY(-2px)';
   });
 
   scrollToTopBtn.addEventListener('mouseleave', () => {
-    scrollToTopBtn.style.background = '#1a1a1a';
+    scrollToTopBtn.style.background = 'var(--color-primary)';
     scrollToTopBtn.style.transform = 'translateY(0)';
   });
 

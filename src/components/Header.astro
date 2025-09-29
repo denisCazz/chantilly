@@ -1,6 +1,3 @@
----
-import { Icon } from 'astro-icon/components';
----
 
 <header class="header">
 	<div class="header-container">
@@ -18,11 +15,6 @@ import { Icon } from 'astro-icon/components';
 			</ul>
 			
 			<div class="nav-controls">
-				<button id="theme-toggle" class="theme-toggle" aria-label="Cambia tema">
-					<Icon name="mdi:weather-sunny" class="sun-icon" />
-					<Icon name="mdi:weather-night" class="moon-icon" />
-				</button>
-				
 				<button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
 					<span class="hamburger"></span>
 				</button>
@@ -48,20 +40,6 @@ import { Icon } from 'astro-icon/components';
 			}
 		}
 		
-		// Theme toggle
-		if (e.target.closest('#theme-toggle')) {
-			e.preventDefault();
-			e.stopPropagation();
-			
-			const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-			const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-			
-			// Apply new theme
-			document.documentElement.setAttribute('data-theme', newTheme);
-			document.body.setAttribute('data-theme', newTheme);
-			localStorage.setItem('theme', newTheme);
-		}
-		
 		// Close mobile menu when clicking on navigation links
 		if (e.target.closest('.nav-link')) {
 			const mobileToggle = document.getElementById('mobile-toggle');
@@ -75,86 +53,173 @@ import { Icon } from 'astro-icon/components';
 	});
 
 	document.addEventListener('DOMContentLoaded', function() {
+		const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+		if (!navLinks.length) return;
 
-		// Active link highlighting and navigation logic
+		const header = document.querySelector('.header');
+		const navMenu = document.getElementById('nav-menu');
+		const mobileToggle = document.getElementById('mobile-toggle');
 		const currentPath = window.location.pathname;
 		const isHomePage = currentPath === '/' || currentPath === '/index.html';
-		
-		document.querySelectorAll('.nav-link').forEach(link => {
+
+		const setActiveLink = (predicate) => {
+			navLinks.forEach((link) => {
+				const shouldActivate = predicate(link);
+				link.classList.toggle('active', Boolean(shouldActivate));
+			});
+		};
+
+		const setActiveByHref = (href) => setActiveLink((link) => link.getAttribute('href') === href);
+		const setActiveBySection = (sectionId) => setActiveLink((link) => link.dataset.sectionId === sectionId);
+
+		if (currentPath.startsWith('/menu')) {
+			setActiveByHref('/menu/');
+		}
+
+		const anchorLinks = navLinks.filter((link) => {
 			const href = link.getAttribute('href');
-			if (!href) return;
-			
-			// Handle menu page link
-			if (href === '/menu/' && currentPath.includes('/menu')) {
-				link.classList.add('active');
-			}
-			// Handle home page anchor links
-			else if (href.startsWith('/#') && isHomePage) {
-				const anchor = href.substring(2); // Remove /#
-				if (window.location.hash === `#${anchor}`) {
-					link.classList.add('active');
-				}
-			}
-			// Handle direct homepage link
-			else if (href === '/#home' && isHomePage && !window.location.hash) {
-				link.classList.add('active');
-			}
+			return href && href.startsWith('/#');
 		});
 
-		// Smart navigation: if we're not on homepage and clicking anchor link, go to homepage first
-		document.querySelectorAll('a[href^="/#"]').forEach(link => {
-			link.addEventListener('click', function(e) {
+		const sectionsById = new Map();
+		const sectionElements = anchorLinks
+			.map((link) => {
+				const href = link.getAttribute('href');
+				if (!href) return null;
+				const sectionId = href.slice(2);
+				link.dataset.sectionId = sectionId;
+				const element = document.getElementById(sectionId);
+				if (element) {
+					sectionsById.set(sectionId, element);
+				}
+				return element;
+			})
+			.filter(Boolean);
+
+		const enableScrollTracking = isHomePage && sectionElements.length > 0;
+
+		const getHeaderOffset = () => {
+			const height = header?.offsetHeight ?? 70;
+			return height + 8;
+		};
+
+		const highlightByScrollPosition = () => {
+			if (!sectionElements.length) return;
+			const offset = getHeaderOffset();
+			const scrollPosition = window.scrollY + offset;
+			let activeId = sectionElements[0].id;
+			for (const section of sectionElements) {
+				if (section.offsetTop <= scrollPosition) {
+					activeId = section.id;
+				} else {
+					break;
+				}
+			}
+			setActiveBySection(activeId);
+		};
+
+		if (!enableScrollTracking && !currentPath.startsWith('/menu')) {
+			setActiveBySection('home');
+		}
+
+		const visibleSections = new Map();
+		let scrollRaf = null;
+
+		const updateFromVisibleSections = () => {
+			if (visibleSections.size) {
+				const sorted = Array.from(visibleSections.values()).sort((a, b) => a.docTop - b.docTop);
+				setActiveBySection(sorted[0]?.id ?? 'home');
+			} else {
+				highlightByScrollPosition();
+			}
+		};
+
+		if (enableScrollTracking) {
+			highlightByScrollPosition();
+
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					const sectionId = entry.target.id;
+					if (!sectionId) return;
+					if (entry.isIntersecting) {
+						visibleSections.set(sectionId, {
+							id: sectionId,
+							docTop: entry.target.getBoundingClientRect().top + window.scrollY
+						});
+					} else {
+						visibleSections.delete(sectionId);
+					}
+				});
+				updateFromVisibleSections();
+			}, {
+				rootMargin: '-45% 0px -45% 0px',
+				threshold: [0.2, 0.4, 0.6]
+			});
+
+			sectionElements.forEach((section) => observer.observe(section));
+
+			const scheduleFallbackUpdate = () => {
+				if (visibleSections.size) return;
+				if (scrollRaf !== null) return;
+				scrollRaf = requestAnimationFrame(() => {
+					scrollRaf = null;
+					highlightByScrollPosition();
+				});
+			};
+
+			window.addEventListener('scroll', scheduleFallbackUpdate, { passive: true });
+			window.addEventListener('resize', () => {
+				visibleSections.clear();
+				highlightByScrollPosition();
+			});
+
+			const applyHash = (hash) => {
+				const sectionId = hash.replace('#', '');
+				if (!sectionId) {
+					highlightByScrollPosition();
+					return;
+				}
+				if (sectionsById.has(sectionId)) {
+					setActiveBySection(sectionId);
+				}
+			};
+
+			applyHash(window.location.hash);
+
+			window.addEventListener('hashchange', () => {
+				applyHash(window.location.hash);
+			});
+		}
+
+		anchorLinks.forEach((link) => {
+			link.addEventListener('click', (event) => {
 				const href = link.getAttribute('href');
 				if (!href) return;
-				
-				const isCurrentlyHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
-				
-				if (!isCurrentlyHomePage) {
-					// If we're not on homepage, navigate to homepage with the anchor
+				const sectionId = link.dataset.sectionId;
+				if (!sectionId) return;
+
+				const currentlyHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+				if (!currentlyHomePage) {
 					window.location.href = href;
 					return;
 				}
-				
-				// If we're already on homepage, smooth scroll to anchor
-				e.preventDefault();
-				const targetId = href.substring(2); // Remove /#
-				const target = document.getElementById(targetId);
-				if (target) {
-					const headerHeight = window.innerWidth >= 768 ? 70 : 60;
-					const targetPosition = target.offsetTop - headerHeight;
-					
-					window.scrollTo({
-						top: targetPosition,
-						behavior: 'smooth'
-					});
-					
-					// Update URL hash
-					history.pushState(null, '', href);
-				}
-			});
-		});
 
-		// Handle hash changes for active link highlighting
-		window.addEventListener('hashchange', function() {
-			// Remove all active classes
-			document.querySelectorAll('.nav-link').forEach(link => {
-				link.classList.remove('active');
+				const targetSection = sectionsById.get(sectionId);
+				if (!targetSection) return;
+
+				event.preventDefault();
+				const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - getHeaderOffset();
+				setActiveBySection(sectionId);
+				window.scrollTo({
+					top: targetPosition,
+					behavior: 'smooth'
+				});
+
+				if (mobileToggle && navMenu) {
+					mobileToggle.classList.remove('active');
+					navMenu.classList.remove('active');
+				}
 			});
-			
-			// Add active class to current hash link
-			const currentHash = window.location.hash;
-			if (currentHash) {
-				const activeLink = document.querySelector(`a[href="/${currentHash}"]`);
-				if (activeLink) {
-					activeLink.classList.add('active');
-				}
-			} else {
-				// If no hash, activate home link
-				const homeLink = document.querySelector('a[href="/#home"]');
-				if (homeLink) {
-					homeLink.classList.add('active');
-				}
-			}
 		});
 	});
 </script>

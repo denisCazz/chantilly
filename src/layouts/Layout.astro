@@ -10,7 +10,14 @@ export interface Props {
 	description?: string;
 }
 
-const { title, description = "Bar Chantilly Carmagnola - Caffè di qualità, tabaccheria, punto Sisal, ricariche telefoniche. Viale Barbaroux 68, Carmagnola TO. Aperto 7 giorni su 7." } = Astro.props;
+const {
+	title,
+	description = "Bar Chantilly Carmagnola - Caffè di qualità, tabaccheria, punto Sisal, ricariche telefoniche. Viale Barbaroux 68, Carmagnola TO. Aperto 7 giorni su 7."
+} = Astro.props;
+
+const siteOrigin = Astro.site ?? new URL('https://bartabacchichantilly.it');
+const canonicalUrl = new URL(Astro.url.pathname, siteOrigin);
+const ogImageUrl = new URL('/favicon.svg', siteOrigin).href;
 ---
 
 <!DOCTYPE html>
@@ -23,18 +30,23 @@ const { title, description = "Bar Chantilly Carmagnola - Caffè di qualità, tab
 		<meta name="author" content="Bar Chantilly" />
 		<meta name="robots" content="index, follow" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#fff5eb" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a130f" media="(prefers-color-scheme: dark)" />
 		
 		<!-- Open Graph -->
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://bar-chantilly.it" />
+		<meta property="og:url" content={canonicalUrl.href} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:site_name" content="Bar Tabacchi Chantilly" />
 		<meta property="og:locale" content="it_IT" />
 		
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
 		
 		<!-- Local Business Schema -->
 		<script type="application/ld+json">
@@ -42,6 +54,7 @@ const { title, description = "Bar Chantilly Carmagnola - Caffè di qualità, tab
 			"@context": "https://schema.org",
 			"@type": "BarOrPub",
 			"name": "Bar Chantilly",
+			"url": "https://bartabacchichantilly.it",
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "Viale Barbaroux, 68",
@@ -63,6 +76,8 @@ const { title, description = "Bar Chantilly Carmagnola - Caffè di qualità, tab
 		
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="canonical" href={canonicalUrl.href} />
+		<link rel="alternate" hrefLang="it" href={canonicalUrl.href} />
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
