@@ -456,6 +456,12 @@ img {
         transform: none;
     }
 
+    .nav-link.active {
+        background: transparent;
+        box-shadow: none;
+        transform: none;
+    }
+
     .nav-link::after {
         content: '';
         position: absolute;

@@ -57,7 +57,10 @@ import DarkModeToggle from './DarkModeToggle.astro';
 		</div>
 		
 		<div class="footer-bottom">
-			<p>&copy; 2025 Bar Tabaccheria Chantilly. Tutti i diritti riservati. P.IVA: IT11397850019</p>
+			<div class="footer-bottom-left">
+				<p>&copy; 2025 Bar Tabaccheria Chantilly. Tutti i diritti riservati. P.IVA: IT11397850019</p>
+				<p class="footer-credit">Sviluppato da <a href="https://bitora.it" target="_blank" rel="noopener noreferrer">Bitora.it</a> - un prodotto di Denis Cazzulo</p>
+			</div>
 			<div class="footer-bottom-actions">
 				<div class="footer-legal">
 					<a href="/privacy">Privacy Policy</a>
@@ -185,10 +188,27 @@ import DarkModeToggle from './DarkModeToggle.astro';
 		padding-top: 1.5rem;
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		align-items: flex-start;
 		gap: 1.5rem;
 		flex-wrap: wrap;
 		font-size: 0.9rem;
+	}
+
+	.footer-bottom-left {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.footer-credit {
+		font-size: 0.85rem;
+		color: var(--color-text-secondary);
+		opacity: 0.8;
+	}
+
+	.footer-credit a {
+		color: var(--color-secondary);
+		font-weight: 500;
 	}
 
 	[data-theme="dark"] .footer-bottom {
@@ -227,6 +247,11 @@ import DarkModeToggle from './DarkModeToggle.astro';
 		.footer-bottom {
 			flex-direction: column;
 			gap: 1.25rem;
+			text-align: center;
+			align-items: center;
+		}
+
+		.footer-bottom-left {
 			text-align: center;
 		}
 

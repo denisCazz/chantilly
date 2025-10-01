@@ -4,11 +4,16 @@ import { Icon } from 'astro-icon/components';
 
 <section id="home" class="hero">
 	<div class="hero-content">
-		<div class="hero-icon">
-			<Icon name="mdi:coffee" />
+		<div class="hero-icons">
+			<div class="hero-icon">
+				<Icon name="mdi:coffee" />
+			</div>
+			<div class="hero-icon">
+				<Icon name="mdi:cigarette" />
+			</div>
 		</div>
 		<h1 class="hero-title">
-			Bar <span class="highlight">Chantilly</span>
+			Bar Tabacchi <span class="highlight">Chantilly</span>
 		</h1>
 		<p class="hero-subtitle">
 			Il tuo punto di riferimento nel cuore di Carmagnola. Colazioni, aperitivi, tabacchi e molto altro in un ambiente accogliente e familiare.
@@ -51,11 +56,23 @@ import { Icon } from 'astro-icon/components';
 		z-index: 2;
 	}
 
+	.hero-icons {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 2rem;
+		margin-bottom: 1rem;
+	}
+
 	.hero-icon {
 		font-size: 6rem;
 		color: var(--color-primary);
-		margin-bottom: 1rem;
 		animation: float 3s ease-in-out infinite;
+	}
+
+	.hero-icon:nth-child(2) {
+		animation: floatRotated 3s ease-in-out infinite;
+		animation-delay: -1.5s;
 	}
 
 	.hero-title {
@@ -130,6 +147,26 @@ import { Icon } from 'astro-icon/components';
 		}
 		50% {
 			transform: translateY(-15px);
+		}
+	}
+
+	@keyframes floatRotated {
+		0%,
+		100% {
+			transform: rotate(-25deg) translateY(0);
+		}
+		50% {
+			transform: rotate(-25deg) translateY(-15px);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.hero-icons {
+			gap: 1.5rem;
+		}
+		
+		.hero-icon {
+			font-size: 4rem;
 		}
 	}
 </style>
