@@ -41,12 +41,12 @@ import { Icon } from 'astro-icon/components';
 		justify-content: center;
 		text-align: center;
 		overflow: hidden;
-		background: radial-gradient(circle at top, rgba(212, 175, 55, 0.24), rgba(219, 242, 176, 0.3) 55%, transparent 75%), var(--color-bg-light);
+		background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15), transparent 70%), var(--color-background);
 		padding: 0 2rem;
 	}
 
 	[data-theme="dark"] .hero {
-		background: radial-gradient(circle at top, rgba(212, 175, 55, 0.2), rgba(38, 66, 36, 0.55) 60%, transparent 80%), var(--color-bg-dark);
+		background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.1), transparent 70%), var(--color-background);
 	}
 
 	.hero-content {
@@ -60,19 +60,24 @@ import { Icon } from 'astro-icon/components';
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		gap: 2rem;
-		margin-bottom: 1rem;
+		gap: 3rem;
+		margin-bottom: 2rem;
 	}
 
 	.hero-icon {
-		font-size: 6rem;
-		color: var(--color-primary);
-		animation: float 3s ease-in-out infinite;
+		font-size: 5rem;
+		color: var(--color-secondary);
+		opacity: 0.9;
+		transition: transform 0.3s ease, color 0.3s ease;
+	}
+	
+	.hero-icon:hover {
+		transform: scale(1.1);
+		color: var(--color-accent);
 	}
 
 	.hero-icon:nth-child(2) {
-		animation: floatRotated 3s ease-in-out infinite;
-		animation-delay: -1.5s;
+		/* Removed animation */
 	}
 
 	.hero-title {
