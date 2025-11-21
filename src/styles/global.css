@@ -33,7 +33,7 @@
     --color-bg-dark-offset: #bedb94;
 
     --font-primary: 'Inter', sans-serif;
-    --font-heading: 'Playfair Display', serif;
+    --font-heading: 'Outfit', sans-serif;
     --font-mono: 'Fira Code', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     --border-radius: 10px;
     --border-radius-md: 16px;
@@ -47,42 +47,42 @@
 }
 
 [data-theme="dark"] {
-    --color-primary: #f7f8f5;
-    --color-secondary: #e1c362;
-    --color-accent: #81b86f;
-    --color-warm: #0d150a;
-    --color-highlight: #1f311f;
-    --color-text: #f7f8f5;
-    --color-text-primary: #f7f8f5;
-    --color-text-secondary: #dce7c8;
-    --color-text-offset: #bccca3;
-    --color-text-light: #a7bb8f;
-    --color-text-muted: #8ea374;
-    --color-text-disabled: rgba(247, 248, 245, 0.38);
-    --color-white: #050505;
-    --color-gray-light: #131913;
-    --color-gray: #1a2419;
-    --color-gray-dark: #25341f;
-    --color-background: #050505;
-    --color-surface: #0c150c;
-    --color-surface-alt: #142014;
-    --color-surface-muted: #1b2b1b;
-    --color-surface-dark: #0f1b10;
-    --color-border: rgba(212, 175, 55, 0.32);
-    --color-border-light: rgba(212, 175, 55, 0.22);
-    --color-border-strong: rgba(191, 232, 165, 0.45);
-    --color-border-dark: rgba(191, 232, 165, 0.32);
-    --color-bg: #0a150a;
-    --color-bg-light: #111f11;
-    --color-bg-dark: #070c06;
-    --color-bg-offset: #182718;
-    --color-bg-offset-2: #213421;
-    --color-bg-dark-offset: #2a452b;
+    --color-primary: #ffffff;
+    --color-secondary: #d4af37; /* Gold */
+    --color-accent: #4caf50; /* Green accent */
+    --color-warm: #1e1e1e;
+    --color-highlight: #2c2c2c;
+    --color-text: #e0e0e0;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #b0b0b0;
+    --color-text-offset: #9e9e9e;
+    --color-text-light: #757575;
+    --color-text-muted: #616161;
+    --color-text-disabled: rgba(255, 255, 255, 0.38);
+    --color-white: #000000;
+    --color-gray-light: #121212;
+    --color-gray: #1e1e1e;
+    --color-gray-dark: #2c2c2c;
+    --color-background: #0a0a0a; /* Very dark gray, almost black */
+    --color-surface: #141414;
+    --color-surface-alt: #1a1a1a;
+    --color-surface-muted: #202020;
+    --color-surface-dark: #000000;
+    --color-border: rgba(255, 255, 255, 0.12);
+    --color-border-light: rgba(255, 255, 255, 0.08);
+    --color-border-strong: rgba(255, 255, 255, 0.2);
+    --color-border-dark: rgba(255, 255, 255, 0.3);
+    --color-bg: #0a0a0a;
+    --color-bg-light: #141414;
+    --color-bg-dark: #000000;
+    --color-bg-offset: #1a1a1a;
+    --color-bg-offset-2: #202020;
+    --color-bg-dark-offset: #2c2c2c;
 
-    --shadow: 0 14px 38px rgba(0, 0, 0, 0.48);
-    --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.35);
-    --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 28px 70px rgba(0, 0, 0, 0.58);
+    --shadow: 0 14px 38px rgba(0, 0, 0, 0.6);
+    --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 28px 70px rgba(0, 0, 0, 0.8);
 }
 
 /* Global Resets and Base Styles from Layout.astro */
@@ -228,18 +228,18 @@ img {
     height: 72px;
     display: flex;
     align-items: center;
-    background: rgba(245, 251, 233, 0.92);
+    background: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid var(--color-border);
-    box-shadow: 0 18px 34px rgba(18, 18, 18, 0.08);
-    backdrop-filter: blur(18px);
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(12px);
     z-index: 1000;
     transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 [data-theme="dark"] .header {
-    background: rgba(5, 5, 5, 0.94);
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.45);
+    background: rgba(10, 10, 10, 0.9);
+    border-bottom: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-md);
 }
 
 .nav {
