@@ -1,4 +1,8 @@
 
+---
+import ProfileNavLink from './loyalty/ProfileNavLink';
+---
+
 <header class="header">
 	<div class="header-container">
 		<nav class="nav">
@@ -12,6 +16,7 @@
 				<li><a href="/#orari" class="nav-link">Orari</a></li>
 				<li><a href="/#contatti" class="nav-link">Contatti</a></li>
 				<li><a href="/menu/" class="nav-link">Menu</a></li>
+				<ProfileNavLink client:load />
 			</ul>
 			
 			<div class="nav-controls">
