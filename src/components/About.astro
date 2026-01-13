@@ -63,30 +63,39 @@ import { Icon } from 'astro-icon/components';
 
 <style>
 	.about {
-		background: var(--color-background);
-		padding: 6rem 0;
+		background: var(--color-surface);
+		padding: 7rem 0;
 		border-bottom: 1px solid var(--color-border);
 	}
 
 	[data-theme="dark"] .about {
-		background: var(--color-surface);
+		background: var(--color-surface-alt);
 	}
 
 	.about-content {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 4rem;
-		align-items: start;
+		grid-template-columns: 1.2fr 1fr;
+		gap: 5rem;
+		align-items: center;
 	}
 
 	.about-text {
-		font-size: 1.1rem;
+		font-size: 1.15rem;
 		line-height: 1.8;
 		color: var(--color-text-secondary);
 	}
 
-	.about-text p {
+	.about-text .section-title {
+		text-align: left;
 		margin-bottom: 1.5rem;
+	}
+
+	.about-text .lead {
+		font-size: 1.25rem;
+		line-height: 1.7;
+		color: var(--color-text);
+		margin-bottom: 2.5rem;
+		font-weight: 500;
 	}
 
 	.features {
@@ -99,8 +108,8 @@ import { Icon } from 'astro-icon/components';
 		display: flex;
 		align-items: flex-start;
 		gap: 1.5rem;
-		padding: 1.5rem;
-		background: var(--color-bg);
+		padding: 2rem;
+		background: var(--color-background);
 		border-radius: var(--border-radius-lg);
 		border: 1px solid var(--color-border);
 		box-shadow: var(--shadow-sm);
@@ -141,11 +150,12 @@ import { Icon } from 'astro-icon/components';
 	.about-stats {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 2rem;
-		padding: 2rem;
-		background: var(--color-bg-offset);
+		gap: 1.5rem;
+		padding: 2.5rem;
+		background: var(--color-background);
 		border-radius: var(--border-radius-lg);
 		border: 1px solid var(--color-border);
+		box-shadow: var(--shadow-md);
 	}
 
 	[data-theme="dark"] .about-stats {
@@ -156,11 +166,18 @@ import { Icon } from 'astro-icon/components';
 	.stat {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		padding: 1rem;
-		background: var(--color-bg);
-		border-radius: var(--border-radius);
+		gap: 1.25rem;
+		padding: 1.5rem;
+		background: var(--color-surface);
+		border-radius: var(--border-radius-md);
 		border: 1px solid var(--color-border);
+		transition: var(--transition);
+	}
+
+	.stat:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-sm);
+		border-color: var(--color-secondary);
 	}
 
 	[data-theme="dark"] .stat {

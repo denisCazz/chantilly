@@ -34,6 +34,13 @@
 					<div class="info-text">
 						<h3>Telefono</h3>
 						<p><a href="tel:+39011266215">011 266 215</a></p>
+						<a href="tel:+39011266215" class="call-button" aria-label="Chiama ora">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+								<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+								<path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>
+							</svg>
+							Chiama Ora
+						</a>
 					</div>
 				</div>
 				
@@ -71,14 +78,15 @@
 			
 			<div class="map-container">
 				<iframe 
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2820.234!2d7.861042!3d44.850876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47881168b7a8c345%3A0x7f2d3e4c8b5a1f6e!2sViale%20Barbaroux%2C%2068%2C%2010022%20Carmagnola%20TO!5e0!3m2!1sit!2sit!4v1703849600000!5m2!1sit!2sit"
+					data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2820.234!2d7.861042!3d44.850876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47881168b7a8c345%3A0x7f2d3e4c8b5a1f6e!2sViale%20Barbaroux%2C%2068%2C%2010022%20Carmagnola%20TO!5e0!3m2!1sit!2sit!4v1703849600000!5m2!1sit!2sit"
 					width="100%" 
 					height="100%" 
 					style="border:0;" 
 					allowfullscreen="" 
 					loading="lazy" 
 					referrerpolicy="no-referrer-when-downgrade"
-					title="Mappa del Bar Chantilly">
+					title="Mappa del Bar Chantilly"
+					id="map-iframe">
 				</iframe>
 			</div>
 		</div>
@@ -87,8 +95,12 @@
 
 <style>
 	.contact {
-		background: var(--color-background);
-		padding: 6rem 0;
+		background: var(--color-surface);
+		padding: 7rem 0;
+	}
+
+	[data-theme="dark"] .contact {
+		background: var(--color-surface-alt);
 	}
 
 	[data-theme="dark"] .contact {
@@ -152,6 +164,39 @@
 	.info-text a:hover {
 		text-decoration: underline;
 		color: var(--color-accent);
+	}
+
+	.call-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 0.75rem;
+		padding: 0.75rem 1.5rem;
+		background: linear-gradient(135deg, #4caf50, #66bb6a);
+		color: white;
+		border-radius: var(--border-radius-full);
+		font-weight: 600;
+		font-size: 0.95rem;
+		text-decoration: none;
+		box-shadow: var(--shadow-sm);
+		transition: all 0.3s ease;
+		border: 2px solid #2e7d32;
+	}
+
+	.call-button:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+		background: linear-gradient(135deg, #66bb6a, #81c784);
+		text-decoration: none;
+	}
+
+	.call-button:active {
+		transform: translateY(0);
+	}
+
+	.call-button svg {
+		width: 18px;
+		height: 18px;
 	}
 
 	.social-links {
@@ -279,3 +324,28 @@
 		}
 	}
 </style>
+
+<script>
+	// Lazy load iframe quando entra nel viewport
+	document.addEventListener('DOMContentLoaded', function() {
+		const iframe = document.getElementById('map-iframe');
+		if (!iframe) return;
+		
+		const dataSrc = iframe.getAttribute('data-src');
+		if (!dataSrc) return;
+		
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					iframe.src = dataSrc;
+					iframe.removeAttribute('data-src');
+					observer.unobserve(iframe);
+				}
+			});
+		}, {
+			rootMargin: '50px'
+		});
+		
+		observer.observe(iframe);
+	});
+</script>
