@@ -385,6 +385,26 @@ img {
     transform: translateY(0);
 }
 
+.nav-link.admin-link {
+    color: var(--color-secondary);
+    font-weight: 700;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.nav-link.admin-link:hover,
+.nav-link.admin-link:focus-visible {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+    border-color: var(--color-secondary);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+.nav-link.admin-link.active {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.15) 100%);
+    border-color: var(--color-secondary);
+    box-shadow: inset 0 0 0 1px var(--color-secondary), 0 2px 8px rgba(212, 175, 55, 0.15);
+}
+
 /* Navigation controls - right aligned */
 .nav-controls {
     display: flex;

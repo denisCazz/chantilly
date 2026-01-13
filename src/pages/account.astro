@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AuthGate from '../components/loyalty/AuthGate';
+import CustomerCard from '../components/loyalty/CustomerCard';
+---
+
+<Layout title="Il Tuo Profilo | Bar Chantilly">
+  <main class="account-page">
+    <div class="container">
+      <h1 class="page-title">Il Tuo Profilo</h1>
+      <AuthGate client:load>
+        <CustomerCard client:load />
+      </AuthGate>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .account-page {
+    min-height: 80vh;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--color-text-primary);
+  }
+</style>
