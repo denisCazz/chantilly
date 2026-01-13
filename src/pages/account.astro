@@ -15,6 +15,32 @@ import CustomerCard from '../components/loyalty/CustomerCard';
   </main>
 </Layout>
 
+<script>
+  // Redirect automatico per admin/staff
+  if (typeof window !== 'undefined') {
+    import('../lib/supabaseClient.js').then(({ supabase, isSupabaseConfigured }) => {
+      if (isSupabaseConfigured()) {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          if (session?.user) {
+            // Controlla il ruolo
+            supabase
+              .from('profiles')
+              .select('role')
+              .eq('id', session.user.id)
+              .single()
+              .then(({ data, error }) => {
+                if (!error && data && (data.role === 'admin' || data.role === 'staff')) {
+                  // Reindirizza a /admin se è admin/staff
+                  window.location.replace('/admin');
+                }
+              });
+          }
+        });
+      }
+    });
+  }
+</script>
+
 <style>
   .account-page {
     min-height: 80vh;

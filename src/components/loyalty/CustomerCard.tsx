@@ -26,14 +26,25 @@ interface CardData {
   }>;
 }
 
+interface Reward {
+  id: string;
+  name: string;
+  cost_points: number;
+}
+
 export default function CustomerCard() {
   const [cardData, setCardData] = useState<CardData | null>(null);
   const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [rewards, setRewards] = useState<Reward[]>([]);
+  const [selectedReward, setSelectedReward] = useState<string>('');
+  const [redeeming, setRedeeming] = useState(false);
+  const [redemptionMessage, setRedemptionMessage] = useState<{reward: string; date: string} | null>(null);
 
   useEffect(() => {
     loadCardData();
+    loadRewards();
   }, []);
 
 
@@ -80,6 +91,21 @@ export default function CustomerCard() {
     }
   };
 
+  const loadRewards = async () => {
+    const { data, error } = await supabase
+      .from('rewards')
+      .select('id, name, cost_points')
+      .eq('active', true)
+      .order('cost_points', { ascending: true });
+
+    if (!error && data) {
+      setRewards(data as Reward[]);
+      if (data.length > 0) {
+        setSelectedReward(data[0].id);
+      }
+    }
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('it-IT', {
       day: '2-digit',
@@ -88,6 +114,65 @@ export default function CustomerCard() {
       hour: '2-digit',
       minute: '2-digit'
     });
+  };
+
+  const formatDateForMessage = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('it-IT', {
+      weekday: 'long',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  const handleRedeem = async () => {
+    if (!selectedReward) {
+      alert('Seleziona un premio');
+      return;
+    }
+
+    const reward = rewards.find(r => r.id === selectedReward);
+    if (!reward) return;
+
+    if (cardData && cardData.card.points < reward.cost_points) {
+      alert(`Punti insufficienti! Hai ${cardData.card.points} punti, servono ${reward.cost_points}`);
+      return;
+    }
+
+    if (!confirm(`Confermi il riscatto di "${reward.name}" per ${reward.cost_points} punti?`)) {
+      return;
+    }
+
+    setRedeeming(true);
+    try {
+      const { data, error } = await supabase.rpc('customer_redeem_reward', {
+        p_reward_id: selectedReward
+      });
+
+      if (error) {
+        alert('Errore: ' + error.message);
+        setRedeeming(false);
+        return;
+      }
+
+      if (data) {
+        // Mostra messaggio con data/ora
+        const now = new Date();
+        setRedemptionMessage({
+          reward: reward.name,
+          date: formatDateForMessage(now.toISOString())
+        });
+
+        // Ricarica i dati della card
+        await loadCardData();
+      }
+    } catch (err) {
+      alert('Errore durante il riscatto: ' + (err instanceof Error ? err.message : 'Errore sconosciuto'));
+    } finally {
+      setRedeeming(false);
+    }
   };
 
 
@@ -165,6 +250,69 @@ export default function CustomerCard() {
           </span>
         </div>
       </div>
+
+      {rewards.length > 0 && (
+        <div className="redeem-section">
+          <h3>Riscatta Premio</h3>
+          {redemptionMessage ? (
+            <div className="redemption-success-message">
+              <h4>Grazie! Premio Riscattato</h4>
+              <p className="redemption-reward-name">{redemptionMessage.reward}</p>
+              <p className="redemption-instruction">
+                Mostra questo messaggio in cassa per riscattare il premio:
+              </p>
+              <div className="redemption-voucher">
+                <p className="voucher-text">
+                  <strong>Premio Riscattato:</strong> {redemptionMessage.reward}
+                </p>
+                <p className="voucher-date">
+                  <strong>Data e Ora:</strong> {redemptionMessage.date}
+                </p>
+                {cardData && cardData.card.short_code && (
+                  <p className="voucher-code">
+                    <strong>Codice Tessera:</strong> {cardData.card.short_code}
+                  </p>
+                )}
+              </div>
+              <button 
+                onClick={() => setRedemptionMessage(null)} 
+                className="btn btn-primary"
+              >
+                Chiudi
+              </button>
+            </div>
+          ) : (
+            <>
+              <select
+                value={selectedReward}
+                onChange={(e) => setSelectedReward(e.target.value)}
+                className="reward-select"
+                disabled={redeeming}
+              >
+                {rewards.map((reward) => (
+                  <option key={reward.id} value={reward.id}>
+                    {reward.name} ({reward.cost_points} punti)
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={handleRedeem}
+                disabled={redeeming || !cardData || cardData.card.points < (rewards.find(r => r.id === selectedReward)?.cost_points || 0)}
+                className="btn btn-primary btn-redeem"
+              >
+                {redeeming ? 'Riscattando...' : 'Riscatta Premio'}
+              </button>
+              {cardData && selectedReward && (
+                <p className="redeem-hint">
+                  {cardData.card.points >= (rewards.find(r => r.id === selectedReward)?.cost_points || 0) 
+                    ? 'Hai abbastanza punti per questo premio!' 
+                    : `Ti servono ancora ${(rewards.find(r => r.id === selectedReward)?.cost_points || 0) - cardData.card.points} punti`}
+                </p>
+              )}
+            </>
+          )}
+        </div>
+      )}
 
       <div className="ledger-section">
         <h3>Storico Movimenti</h3>

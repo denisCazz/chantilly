@@ -14,13 +14,18 @@ export default function AdminPanel() {
     const codeFromUrl = params.get('code');
     
     // Inizializza sempre con dashboard visibile, a meno che non ci sia un codice nell'URL
-    if (codeFromUrl) {
+    if (codeFromUrl && codeFromUrl.trim() !== '') {
       setScannedCode(codeFromUrl);
       setShowDashboard(false);
     } else {
       // Assicurati che la dashboard sia visibile al primo accesso
+      // Pulisci anche eventuali parametri nell'URL
       setScannedCode('');
       setShowDashboard(true);
+      // Rimuovi eventuali parametri code dall'URL
+      if (window.location.search.includes('code=')) {
+        window.history.replaceState({}, '', '/admin');
+      }
     }
     
     setInitialized(true);
@@ -52,9 +57,6 @@ export default function AdminPanel() {
     <div className="admin-panel">
       {scannedCode ? (
         <div className="scanned-result">
-          <div className="scanned-code-display">
-            <p>Codice Tessera: <strong>{scannedCode}</strong></p>
-          </div>
           <AdminActions publicCode={scannedCode} onReset={handleReset} />
         </div>
       ) : (

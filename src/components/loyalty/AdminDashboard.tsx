@@ -95,10 +95,16 @@ export default function AdminDashboard() {
 
   const handleLogout = async () => {
     try {
-      await supabase.auth.signOut();
-      window.location.href = '/';
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Errore durante il logout:', error);
+      }
+      // Forza il reload completo per assicurarsi che la sessione sia cancellata
+      window.location.replace('/');
     } catch (error) {
       console.error('Errore durante il logout:', error);
+      // Anche in caso di errore, prova a reindirizzare
+      window.location.replace('/');
     }
   };
 

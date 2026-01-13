@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS public.redemptions (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     card_id UUID NOT NULL REFERENCES public.loyalty_cards(id) ON DELETE CASCADE,
     reward_id UUID NOT NULL REFERENCES public.rewards(id) ON DELETE RESTRICT,
-    staff_id UUID NOT NULL REFERENCES public.profiles(id) ON DELETE RESTRICT,
+    staff_id UUID REFERENCES public.profiles(id) ON DELETE SET NULL, -- NULL se riscattato dall'utente direttamente
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
