@@ -21,6 +21,7 @@ interface Customer {
   card: {
     id: string;
     public_code: string;
+    short_code?: string;
     points: number;
   } | null;
 }
@@ -92,6 +93,15 @@ export default function AdminDashboard() {
     });
   };
 
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Errore durante il logout:', error);
+    }
+  };
+
   if (loading) {
     return (
       <div className="admin-dashboard-loading">
@@ -105,9 +115,14 @@ export default function AdminDashboard() {
     <div className="admin-dashboard">
       <div className="dashboard-header">
         <h2>Dashboard Amministrazione</h2>
-        <button onClick={loadDashboard} className="btn btn-secondary btn-refresh">
-          🔄 Aggiorna
-        </button>
+        <div className="dashboard-actions">
+          <button onClick={loadDashboard} className="btn btn-secondary btn-refresh">
+            Aggiorna
+          </button>
+          <button onClick={handleLogout} className="btn btn-logout">
+            Esci
+          </button>
+        </div>
       </div>
 
       {/* Statistiche */}
@@ -206,7 +221,7 @@ export default function AdminDashboard() {
                     <div className="customer-email">{customer.email}</div>
                     {customer.card && (
                       <div className="customer-card-info">
-                        <span>Codice: <code>{customer.card.public_code}</code></span>
+                        <span>Codice: <code>{customer.card.short_code || customer.card.public_code}</code></span>
                         <span>Punti: <strong>{customer.card.points}</strong></span>
                       </div>
                     )}
@@ -243,13 +258,14 @@ export default function AdminDashboard() {
                   </div>
                   {customer.card && (
                     <div className="customer-card-info">
+                      <span>Codice: <code>{customer.card.short_code || customer.card.public_code}</code></span>
                       <span>Punti: <strong>{customer.card.points}</strong></span>
                     </div>
                   )}
                 </div>
                 {customer.card && (
                   <button
-                    onClick={() => window.location.href = `/admin?code=${customer.card.public_code}`}
+                    onClick={() => window.location.href = `/admin?code=${customer.card.short_code || customer.card.public_code}`}
                     className="btn btn-small btn-primary"
                   >
                     Gestisci

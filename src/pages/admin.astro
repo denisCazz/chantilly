@@ -21,6 +21,7 @@ import AdminPanel from '../components/loyalty/AdminPanel';
   .admin-page {
     min-height: 80vh;
     padding: 2rem 1rem;
+    padding-top: calc(95px + 2rem); /* Header height + padding */
   }
 
   .container {
@@ -37,5 +38,11 @@ import AdminPanel from '../components/loyalty/AdminPanel';
 
   .admin-content {
     margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .admin-page {
+      padding-top: calc(95px + 1rem);
+    }
   }
 </style>

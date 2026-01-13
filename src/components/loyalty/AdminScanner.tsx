@@ -37,7 +37,10 @@ export default function AdminScanner({ onScanSuccess, onError }: AdminScannerPro
           fps: 10,
           qrbox: { width: 250, height: 250 },
           aspectRatio: 1.0,
-          supportedScanTypes: []
+          supportedScanTypes: [],
+          videoConstraints: {
+            facingMode: 'environment' // Camera posteriore di default
+          }
         },
         false // verbose
       );
@@ -94,11 +97,11 @@ export default function AdminScanner({ onScanSuccess, onError }: AdminScannerPro
       <div className="scanner-controls">
         {!scanning ? (
           <button onClick={startScan} className="btn btn-primary scanner-btn">
-            📷 Avvia Scanner QR
+            Avvia Scanner QR
           </button>
         ) : (
           <button onClick={stopScan} className="btn btn-secondary scanner-btn">
-            ⏹️ Ferma Scanner
+            Ferma Scanner
           </button>
         )}
         
@@ -119,7 +122,7 @@ export default function AdminScanner({ onScanSuccess, onError }: AdminScannerPro
 
       {error && (
         <div className="scanner-error">
-          ⚠️ {error}
+          {error}
         </div>
       )}
 
