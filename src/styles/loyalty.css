@@ -536,6 +536,31 @@
   box-shadow: var(--shadow-sm);
 }
 
+.card-code-display {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--color-surface-alt);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border-light);
+}
+
+.code-label {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.code-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
+  color: var(--color-secondary);
+}
+
 .customer-info-card h3 {
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
@@ -623,16 +648,84 @@
 }
 
 .redeem-section {
-  background: var(--color-surface-alt);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
   padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.redeem-section h3 {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
 }
 
 .redeem-section h4 {
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
   color: var(--color-text-primary);
+}
+
+.redeem-hint {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.redemption-success-message {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.redemption-reward-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 1rem 0;
+}
+
+.redemption-instruction {
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.redemption-voucher {
+  background: var(--color-background);
+  border: 3px solid var(--color-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 2rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-md);
+}
+
+.voucher-text,
+.voucher-date,
+.voucher-code {
+  margin: 0.75rem 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.voucher-text strong,
+.voucher-date strong,
+.voucher-code strong {
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.voucher-code {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
 }
 
 .reward-select {

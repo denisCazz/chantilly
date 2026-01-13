@@ -31,12 +31,42 @@ export default function AdminActions({ publicCode, onReset }: AdminActionsProps)
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [selectedReward, setSelectedReward] = useState<string>('');
+  const [shortCode, setShortCode] = useState<string>('');
 
   useEffect(() => {
     if (publicCode) {
       loadRewards();
+      loadShortCode();
     }
   }, [publicCode]);
+
+  const loadShortCode = async () => {
+    try {
+      // Cerca la tessera per public_code o short_code
+      const { data, error } = await supabase
+        .from('loyalty_cards')
+        .select('short_code, public_code')
+        .or(`public_code.eq."${publicCode}",short_code.eq."${publicCode}"`)
+        .maybeSingle();
+
+      if (!error && data) {
+        // Mostra short_code se disponibile, altrimenti mostra solo le prime 8 cifre del public_code
+        if (data.short_code) {
+          setShortCode(data.short_code);
+        } else {
+          // Se non c'è short_code, mostra solo le prime 8 cifre del public_code per brevità
+          setShortCode(data.public_code.substring(0, 8) + '...');
+        }
+      } else {
+        // In caso di errore o nessun risultato, mostra il codice fornito (potrebbe essere già short_code)
+        setShortCode(publicCode.length <= 8 ? publicCode : publicCode.substring(0, 8) + '...');
+      }
+    } catch (err) {
+      console.error('Errore nel caricamento del codice breve:', err);
+      // In caso di errore, mostra il codice fornito
+      setShortCode(publicCode.length <= 8 ? publicCode : publicCode.substring(0, 8) + '...');
+    }
+  };
 
   const loadRewards = async () => {
     const { data, error } = await supabase
@@ -131,17 +161,25 @@ export default function AdminActions({ publicCode, onReset }: AdminActionsProps)
         </div>
       )}
 
-      {cardInfo && (
-        <div className="customer-info-card">
-          <h3>Cliente</h3>
-          <p className="customer-name">{cardInfo.customer.name || cardInfo.customer.email}</p>
-          <p className="customer-email">{cardInfo.customer.email}</p>
-          <div className="current-balance">
-            <span className="balance-label">Saldo Attuale:</span>
-            <span className="balance-value">{cardInfo.new_balance} punti</span>
+      <div className="customer-info-card">
+        <h3>Cliente</h3>
+        {shortCode && (
+          <div className="card-code-display">
+            <span className="code-label">Codice Tessera:</span>
+            <span className="code-value">{shortCode}</span>
           </div>
-        </div>
-      )}
+        )}
+        {cardInfo && (
+          <>
+            <p className="customer-name">{cardInfo.customer.name || cardInfo.customer.email}</p>
+            <p className="customer-email">{cardInfo.customer.email}</p>
+            <div className="current-balance">
+              <span className="balance-label">Saldo Attuale:</span>
+              <span className="balance-value">{cardInfo.new_balance} punti</span>
+            </div>
+          </>
+        )}
+      </div>
 
       <div className="action-buttons">
         <button

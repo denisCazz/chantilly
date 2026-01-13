@@ -56,6 +56,15 @@ export default function AuthGate({ children, requireRole, redirectTo = '/account
     return () => subscription.unsubscribe();
   }, []);
 
+  // Redirect immediato se admin/staff su /account
+  useEffect(() => {
+    if (userRole && (userRole === 'admin' || userRole === 'staff') && !requireRole) {
+      if (typeof window !== 'undefined' && window.location.pathname === '/account') {
+        window.location.replace('/admin');
+      }
+    }
+  }, [userRole, requireRole]);
+
   const checkUserRole = async (userId: string) => {
     const { data, error } = await supabase
       .from('profiles')
@@ -113,6 +122,8 @@ export default function AuthGate({ children, requireRole, redirectTo = '/account
         setShowLogin(false);
         setEmail('');
         setPassword('');
+        // Controlla il ruolo dopo il login e reindirizza se necessario
+        checkUserRole(data.user.id);
       }
     }
   };
