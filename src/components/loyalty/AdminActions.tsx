@@ -64,7 +64,7 @@ export default function AdminActions({ publicCode, onReset }: AdminActionsProps)
 
     try {
       const { data, error } = await supabase.rpc('staff_add_point', {
-        p_public_code: publicCode,
+        p_code: publicCode,  // Accetta sia public_code che short_code
         p_delta: delta,
         p_reason: reason
       });
@@ -97,7 +97,7 @@ export default function AdminActions({ publicCode, onReset }: AdminActionsProps)
 
     try {
       const { data, error } = await supabase.rpc('staff_redeem', {
-        p_public_code: publicCode,
+        p_code: publicCode,  // Accetta sia public_code che short_code
         p_reward_id: selectedReward
       });
 

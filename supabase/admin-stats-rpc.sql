@@ -142,7 +142,7 @@ BEGIN
         RAISE EXCEPTION 'Accesso negato: solo staff/admin';
     END IF;
     
-    -- Cerca per email o public_code
+    -- Cerca per email, nome, public_code o short_code
     SELECT json_agg(
         json_build_object(
             'id', p.id,
@@ -152,6 +152,7 @@ BEGIN
             'card', json_build_object(
                 'id', lc.id,
                 'public_code', lc.public_code,
+                'short_code', lc.short_code,
                 'points', lc.points_int
             )
         )
@@ -162,6 +163,7 @@ BEGIN
     AND (
         p.email ILIKE '%' || search_term || '%'
         OR lc.public_code ILIKE '%' || search_term || '%'
+        OR lc.short_code ILIKE '%' || search_term || '%'
         OR COALESCE(p.full_name, '') ILIKE '%' || search_term || '%'
     )
     LIMIT 20;

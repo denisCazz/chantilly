@@ -19,6 +19,7 @@ import CustomerCard from '../components/loyalty/CustomerCard';
   .account-page {
     min-height: 80vh;
     padding: 2rem 1rem;
+    padding-top: calc(95px + 2rem); /* Header height + padding */
   }
 
   .container {
@@ -31,5 +32,11 @@ import CustomerCard from '../components/loyalty/CustomerCard';
     margin-bottom: 2rem;
     font-size: 2rem;
     color: var(--color-text-primary);
+  }
+
+  @media (max-width: 768px) {
+    .account-page {
+      padding-top: calc(95px + 1rem);
+    }
   }
 </style>

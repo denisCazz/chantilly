@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabaseClient';
 import QRCode from 'qrcode';
-import { Html5QrcodeScanner } from 'html5-qrcode';
 
 interface CardData {
   card: {
     id: string;
     public_code: string;
+    short_code: string;
     points: number;
     created_at: string;
   };
@@ -31,28 +31,11 @@ export default function CustomerCard() {
   const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showScanner, setShowScanner] = useState(false);
-  const scannerRef = useRef<Html5QrcodeScanner | null>(null);
-  const scannerId = 'customer-qr-scanner';
 
   useEffect(() => {
     loadCardData();
-    
-    return () => {
-      // Cleanup scanner on unmount
-      if (scannerRef.current) {
-        scannerRef.current.clear();
-      }
-    };
   }, []);
 
-  useEffect(() => {
-    if (showScanner && cardData) {
-      startScanner();
-    } else {
-      stopScanner();
-    }
-  }, [showScanner]);
 
   const loadCardData = async () => {
     try {
@@ -107,56 +90,6 @@ export default function CustomerCard() {
     });
   };
 
-  const startScanner = () => {
-    if (!cardData) return;
-    
-    const element = document.getElementById(scannerId);
-    if (element) {
-      element.innerHTML = '';
-    }
-
-    const html5QrCode = new Html5QrcodeScanner(
-      scannerId,
-      {
-        fps: 10,
-        qrbox: { width: 250, height: 250 },
-        aspectRatio: 1.0,
-        supportedScanTypes: []
-      },
-      false
-    );
-
-    scannerRef.current = html5QrCode;
-
-    html5QrCode.render(
-      (decodedText) => {
-        // Verifica che il QR scansionato corrisponda al codice della tessera
-        if (decodedText === cardData.card.public_code) {
-          alert('✅ QR Code verificato correttamente!');
-        } else {
-          alert('❌ QR Code non corrisponde alla tua tessera');
-        }
-        setShowScanner(false);
-      },
-      () => {}
-    );
-  };
-
-  const stopScanner = () => {
-    if (scannerRef.current) {
-      try {
-        scannerRef.current.clear();
-      } catch (err) {
-        // Ignora errori
-      }
-      scannerRef.current = null;
-    }
-    
-    const element = document.getElementById(scannerId);
-    if (element) {
-      element.innerHTML = '';
-    }
-  };
 
   const handleLogout = async () => {
     if (confirm('Sei sicuro di voler uscire?')) {
@@ -212,20 +145,14 @@ export default function CustomerCard() {
               <img src={qrCodeUrl} alt="QR Code Tessera" className="qr-code-image" />
             </div>
           )}
-          <p className="qr-code-text">Mostra questo QR code alla cassa per timbrare</p>
-          <button 
-            onClick={() => setShowScanner(!showScanner)} 
-            className="btn btn-primary btn-scan-qr"
-          >
-            {showScanner ? '⏹️ Ferma Scanner' : '📷 Testa QR Code'}
-          </button>
-          
-          {showScanner && (
-            <div className="qr-scanner-section">
-              <p className="scanner-instruction">Inquadra il QR code per verificarlo</p>
-              <div id={scannerId} className="qr-scanner-container"></div>
+          {cardData.card.short_code && (
+            <div className="short-code-display">
+              <p className="short-code-label">Codice Tessera:</p>
+              <p className="short-code-value">{cardData.card.short_code}</p>
+              <p className="short-code-hint">Puoi dettare questo codice alla cassa</p>
             </div>
           )}
+          <p className="qr-code-text">Mostra questo QR code alla cassa per timbrare</p>
         </div>
 
         <div className="progress-bar">
