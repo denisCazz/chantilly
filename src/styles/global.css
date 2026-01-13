@@ -1,36 +1,39 @@
 /* CSS Custom Properties for Theme Colors */
 :root {
-    --color-primary: #121212;
+    --color-primary: #1a1a1a;
     --color-secondary: #d4af37;
-    --color-accent: #bfe8a5;
-    --color-warm: #f6fff1;
-    --color-highlight: #e3f5cf;
-    --color-text: #181818;
-    --color-text-primary: #181818;
-    --color-text-secondary: #333333;
-    --color-text-offset: #4d4d4d;
-    --color-text-light: #666666;
-    --color-text-muted: #8c8c8c;
-    --color-text-disabled: rgba(24, 24, 24, 0.45);
+    --color-secondary-light: #f4d03f;
+    --color-secondary-dark: #b8941f;
+    --color-accent: #4caf50;
+    --color-accent-light: #66bb6a;
+    --color-warm: #fafbf8;
+    --color-highlight: #f0f7e8;
+    --color-text: #1a1a1a;
+    --color-text-primary: #000000;
+    --color-text-secondary: #3d3d3d;
+    --color-text-offset: #5c5c5c;
+    --color-text-light: #7a7a7a;
+    --color-text-muted: #999999;
+    --color-text-disabled: rgba(26, 26, 26, 0.45);
     --color-white: #ffffff;
-    --color-gray-light: #f2f8ec;
-    --color-gray: #e4efd8;
-    --color-gray-dark: #c7dcaf;
+    --color-gray-light: #f5f7f2;
+    --color-gray: #e8ede0;
+    --color-gray-dark: #d4dfc4;
     --color-background: #ffffff;
-    --color-surface: #f5fbe9;
-    --color-surface-alt: #edf7dd;
-    --color-surface-muted: #e2f0cf;
-    --color-surface-dark: #d6e7b8;
-    --color-border: rgba(18, 18, 18, 0.12);
-    --color-border-light: rgba(18, 18, 18, 0.08);
-    --color-border-strong: rgba(18, 18, 18, 0.26);
-    --color-border-dark: rgba(18, 18, 18, 0.38);
-    --color-bg: #f6fbea;
-    --color-bg-light: #fbfff4;
-    --color-bg-dark: #e7f2d2;
-    --color-bg-offset: #deedc3;
-    --color-bg-offset-2: #d0e6ad;
-    --color-bg-dark-offset: #bedb94;
+    --color-surface: #f8faf5;
+    --color-surface-alt: #f2f5ed;
+    --color-surface-muted: #ecefe6;
+    --color-surface-dark: #e0e5d8;
+    --color-border: rgba(26, 26, 26, 0.15);
+    --color-border-light: rgba(26, 26, 26, 0.08);
+    --color-border-strong: rgba(26, 26, 26, 0.25);
+    --color-border-dark: rgba(26, 26, 26, 0.4);
+    --color-bg: #f8faf5;
+    --color-bg-light: #fcfdfa;
+    --color-bg-dark: #f0f3ea;
+    --color-bg-offset: #e8ede0;
+    --color-bg-offset-2: #dee5d4;
+    --color-bg-dark-offset: #d0dac4;
 
     --font-primary: 'Inter', sans-serif;
     --font-heading: 'Outfit', sans-serif;
@@ -39,50 +42,58 @@
     --border-radius-md: 16px;
     --border-radius-lg: 20px;
     --border-radius-full: 999px;
-    --shadow: 0 12px 35px rgba(18, 18, 18, 0.08);
-    --shadow-sm: 0 6px 18px rgba(18, 18, 18, 0.06);
-    --shadow-md: 0 16px 38px rgba(18, 18, 18, 0.15);
-    --shadow-lg: 0 24px 60px rgba(18, 18, 18, 0.18);
-    --transition: all 0.3s ease;
+    --shadow: 0 12px 40px rgba(26, 26, 26, 0.08);
+    --shadow-sm: 0 4px 16px rgba(26, 26, 26, 0.06);
+    --shadow-md: 0 16px 48px rgba(26, 26, 26, 0.12);
+    --shadow-lg: 0 24px 64px rgba(26, 26, 26, 0.16);
+    --shadow-gold: 0 8px 24px rgba(212, 175, 55, 0.25);
+    --shadow-gold-lg: 0 16px 48px rgba(212, 175, 55, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] {
     --color-primary: #ffffff;
     --color-secondary: #d4af37; /* Gold */
-    --color-accent: #4caf50; /* Green accent */
-    --color-warm: #1e1e1e;
-    --color-highlight: #2c2c2c;
-    --color-text: #e0e0e0;
+    --color-secondary-light: #f4d03f;
+    --color-secondary-dark: #b8941f;
+    --color-accent: #66bb6a; /* Green accent */
+    --color-accent-light: #81c784;
+    --color-warm: #000000;
+    --color-highlight: #1a1a1a;
+    --color-text: #f0f0f0;
     --color-text-primary: #ffffff;
-    --color-text-secondary: #b0b0b0;
-    --color-text-offset: #9e9e9e;
-    --color-text-light: #757575;
-    --color-text-muted: #616161;
-    --color-text-disabled: rgba(255, 255, 255, 0.38);
+    --color-text-secondary: #d0d0d0;
+    --color-text-offset: #b0b0b0;
+    --color-text-light: #909090;
+    --color-text-muted: #707070;
+    --color-text-disabled: rgba(255, 255, 255, 0.4);
     --color-white: #000000;
-    --color-gray-light: #121212;
-    --color-gray: #1e1e1e;
-    --color-gray-dark: #2c2c2c;
-    --color-background: #0a0a0a; /* Very dark gray, almost black */
-    --color-surface: #141414;
-    --color-surface-alt: #1a1a1a;
-    --color-surface-muted: #202020;
+    --color-gray-light: #050505;
+    --color-gray: #0a0a0a;
+    --color-gray-dark: #0f0f0f;
+    --color-background: #000000; /* Pure black */
+    --color-surface: #0a0a0a;
+    --color-surface-alt: #0f0f0f;
+    --color-surface-muted: #141414;
     --color-surface-dark: #000000;
     --color-border: rgba(255, 255, 255, 0.12);
     --color-border-light: rgba(255, 255, 255, 0.08);
     --color-border-strong: rgba(255, 255, 255, 0.2);
     --color-border-dark: rgba(255, 255, 255, 0.3);
-    --color-bg: #0a0a0a;
-    --color-bg-light: #141414;
+    --color-bg: #000000;
+    --color-bg-light: #0a0a0a;
     --color-bg-dark: #000000;
-    --color-bg-offset: #1a1a1a;
-    --color-bg-offset-2: #202020;
-    --color-bg-dark-offset: #2c2c2c;
+    --color-bg-offset: #0f0f0f;
+    --color-bg-offset-2: #141414;
+    --color-bg-dark-offset: #1a1a1a;
 
-    --shadow: 0 14px 38px rgba(0, 0, 0, 0.6);
-    --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.7);
-    --shadow-lg: 0 28px 70px rgba(0, 0, 0, 0.8);
+    --shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 16px 48px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.7);
+    --shadow-gold: 0 8px 24px rgba(212, 175, 55, 0.3);
+    --shadow-gold-lg: 0 16px 48px rgba(212, 175, 55, 0.4);
 }
 
 /* Global Resets and Base Styles from Layout.astro */
@@ -159,37 +170,48 @@ img {
 }
 
 .section {
-	padding: 4rem 0;
+	padding: 6rem 0;
 }
 
 .section-title {
 	text-align: center;
-	font-size: 2.5rem;
-	margin-bottom: 1rem;
+	font-size: clamp(2.2rem, 4vw, 3rem);
+	margin-bottom: 1.25rem;
 	color: var(--color-primary);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.2;
 }
 
 .section-subtitle {
 	text-align: center;
-	font-size: 1.1rem;
-	color: var(--color-text-light);
-	margin-bottom: 3rem;
-	max-width: 600px;
+	font-size: clamp(1rem, 1.8vw, 1.2rem);
+	color: var(--color-text-secondary);
+	margin-bottom: 3.5rem;
+	max-width: 700px;
 	margin-left: auto;
 	margin-right: auto;
+	line-height: 1.7;
+	font-weight: 400;
 }
 
 @media (max-width: 768px) {
 	.container {
-		padding: 0 1rem;
+		padding: 0 1.25rem;
 	}
 	
 	.section {
-		padding: 2rem 0;
+		padding: 4rem 0;
 	}
 	
 	.section-title {
 		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+
+	.section-subtitle {
+		margin-bottom: 2.5rem;
+		font-size: 1rem;
 	}
 }
 
@@ -225,20 +247,20 @@ img {
     top: 0;
     left: 0;
     right: 0;
-    height: 72px;
+    height: 95px;
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.98);
     border-bottom: 1px solid var(--color-border);
     box-shadow: var(--shadow-sm);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
     z-index: 1000;
     transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 [data-theme="dark"] .header {
-    background: rgba(10, 10, 10, 0.9);
-    border-bottom: 1px solid var(--color-border-light);
+    background: rgba(0, 0, 0, 0.98);
+    border-bottom: 1px solid var(--color-border);
     box-shadow: var(--shadow-md);
 }
 
@@ -254,6 +276,7 @@ img {
 .logo {
     display: flex;
     align-items: center;
+    gap: 0.75rem;
     text-decoration: none;
     font-weight: 600;
     font-size: 1.3rem;
@@ -269,38 +292,62 @@ img {
     transform: translateY(-2px);
 }
 
-.logo-text {
-    color: var(--color-text);
-    font-weight: 600;
-    letter-spacing: -0.4px;
-    font-family: 'Playfair Display', serif;
-    transition: color 0.3s ease;
+.logo-image {
+    height: 80px;
+    width: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)) brightness(1.05) contrast(1.1);
+}
+
+.logo:hover .logo-image {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 16px rgba(212, 175, 55, 0.3)) brightness(1.1) contrast(1.15);
+}
+
+[data-theme="dark"] .logo-image {
+    filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.25)) brightness(1.1) contrast(1.15);
+}
+
+[data-theme="dark"] .logo:hover .logo-image {
+    filter: drop-shadow(0 6px 20px rgba(212, 175, 55, 0.4)) brightness(1.15) contrast(1.2);
+}
+
+@media (max-width: 768px) {
+    .logo-image {
+        height: 64px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-image {
+        height: 56px;
+    }
 }
 
 
 
 /* Navigation - hidden on mobile, centered on desktop */
-.nav-menu {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background: var(--color-background);
-    border-top: 1px solid var(--color-border);
-    list-style: none;
-    margin: 0;
-    padding: 1rem 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-    box-shadow: 0 18px 45px rgba(74, 42, 19, 0.12);
-    max-height: calc(100vh - 70px);
-    overflow-y: auto;
-}
+    .nav-menu {
+        position: fixed;
+        top: 95px;
+        left: 0;
+        right: 0;
+        background: var(--color-background);
+        border-top: 1px solid var(--color-border);
+        list-style: none;
+        margin: 0;
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+        box-shadow: 0 18px 45px rgba(74, 42, 19, 0.12);
+        max-height: calc(100vh - 95px);
+        overflow-y: auto;
+    }
 
 .nav-menu.active {
     transform: translateY(0);
@@ -415,7 +462,7 @@ img {
     }
 
     .header {
-        height: 70px;
+        height: 95px;
     }
 
     .logo {

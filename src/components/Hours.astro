@@ -8,6 +8,12 @@
 			Siamo aperti dalle 7:00 alle 22:00 con orario continuato, tranne il mercoledì.
 		</p>
 		
+		<!-- Indicatore Aperto/Chiuso -->
+		<div class="status-badge" id="status-badge">
+			<span class="status-icon" id="status-icon"></span>
+			<span class="status-text" id="status-text">Caricamento...</span>
+		</div>
+		
 		<div class="hours-content">
 			<div class="hours-table-wrapper">
 				<div class="hours-table">
@@ -75,15 +81,70 @@
 	</div>
 </section>
 
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const statusBadge = document.getElementById('status-badge');
+		const statusIcon = document.getElementById('status-icon');
+		const statusText = document.getElementById('status-text');
+		
+		if (!statusBadge || !statusIcon || !statusText) return;
+		
+		function checkStatus() {
+			const now = new Date();
+			const day = now.getDay(); // 0 = Domenica, 1 = Lunedì, ..., 6 = Sabato
+			const hour = now.getHours();
+			const minute = now.getMinutes();
+			const currentTime = hour * 60 + minute;
+			const openTime = 7 * 60; // 07:00
+			const closeTime = 22 * 60; // 22:00
+			
+			// Mercoledì = giorno 3, chiuso
+			if (day === 3) {
+				statusBadge.className = 'status-badge closed';
+				statusText.textContent = 'Oggi siamo chiusi';
+				return;
+			}
+			
+			// Controlla se siamo aperti
+			if (currentTime >= openTime && currentTime < closeTime) {
+				statusBadge.className = 'status-badge open';
+				statusText.textContent = 'Siamo aperti ora';
+				
+				// Calcola quando chiudiamo
+				const minutesUntilClose = closeTime - currentTime;
+				const hoursUntilClose = Math.floor(minutesUntilClose / 60);
+				const minsUntilClose = minutesUntilClose % 60;
+				
+				if (hoursUntilClose > 0) {
+					statusText.textContent += ` • Chiudiamo tra ${hoursUntilClose}h ${minsUntilClose > 0 ? minsUntilClose + 'min' : ''}`;
+				} else {
+					statusText.textContent += ` • Chiudiamo tra ${minsUntilClose} minuti`;
+				}
+			} else {
+				statusBadge.className = 'status-badge closed';
+				if (currentTime < openTime) {
+					statusText.textContent = 'Siamo chiusi • Apriamo alle 07:00';
+				} else {
+					statusText.textContent = 'Siamo chiusi • Apriamo domani alle 07:00';
+				}
+			}
+		}
+		
+		checkStatus();
+		// Aggiorna ogni minuto
+		setInterval(checkStatus, 60000);
+	});
+</script>
+
 <style>
 	.hours {
-		background: var(--color-surface);
-		padding: 6rem 0;
+		background: var(--color-background);
+		padding: 7rem 0;
 		border-bottom: 1px solid var(--color-border);
 	}
 
 	[data-theme="dark"] .hours {
-		background: var(--color-bg);
+		background: var(--color-surface);
 	}
 
 	.hours-content {
@@ -152,6 +213,59 @@
 	.hours-row.closed .time {
 		text-decoration: none;
 		font-style: italic;
+	}
+
+	/* Status Badge */
+	.status-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 1.5rem;
+		margin: 2rem auto 0;
+		border-radius: var(--border-radius-full);
+		font-weight: 600;
+		font-size: 1.1rem;
+		box-shadow: var(--shadow-md);
+		transition: all 0.3s ease;
+		justify-content: center;
+		max-width: fit-content;
+	}
+
+	.status-badge.open {
+		background: linear-gradient(135deg, #4caf50, #66bb6a);
+		color: white;
+		border: 2px solid #2e7d32;
+	}
+
+	.status-badge.closed {
+		background: linear-gradient(135deg, #f44336, #e57373);
+		color: white;
+		border: 2px solid #c62828;
+	}
+
+	.status-icon {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: currentColor;
+		animation: pulse 2s infinite;
+		box-shadow: 0 0 0 0 currentColor;
+	}
+
+	.status-badge.closed .status-icon {
+		animation: none;
+	}
+
+	@keyframes pulse {
+		0% {
+			box-shadow: 0 0 0 0 currentColor;
+		}
+		70% {
+			box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+		}
+		100% {
+			box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+		}
 	}
 
 	.hours-info {

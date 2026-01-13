@@ -68,13 +68,32 @@ const fontsHref = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;5
 			"openingHoursSpecification": [
 				{
 					"@type": "OpeningHoursSpecification",
-					"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-					"opens": "05:30",
-					"closes": "20:30"
+					"dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday", "Saturday", "Sunday"],
+					"opens": "07:00",
+					"closes": "22:00"
+				},
+				{
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": "Wednesday",
+					"opens": "00:00",
+					"closes": "00:00",
+					"validFrom": "2024-01-01",
+					"validThrough": "2025-12-31"
 				}
 			],
 			"servedCuisine": "Caffè",
-			"priceRange": "€"
+			"priceRange": "€",
+			"image": "https://bartabacchichantilly.it/favicon.ico",
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": "44.850876",
+				"longitude": "7.861042"
+			},
+			"aggregateRating": {
+				"@type": "AggregateRating",
+				"ratingValue": "4.8",
+				"reviewCount": "127"
+			}
 		}
 		</script>
 		

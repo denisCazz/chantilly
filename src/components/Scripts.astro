@@ -15,26 +15,36 @@ const initEnhancements = () => {
   if (!body) return;
 
   const scrollToTopBtn = document.createElement('button');
-  scrollToTopBtn.innerHTML = '↑';
+  scrollToTopBtn.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M12 5l0 14"/>
+      <path d="M18 11l-6 -6"/>
+      <path d="M6 11l6 -6"/>
+    </svg>
+  `;
   scrollToTopBtn.className = 'scroll-to-top';
   scrollToTopBtn.setAttribute('aria-label', 'Torna in cima');
   scrollToTopBtn.style.cssText = `
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    background: var(--color-primary);
-    color: var(--color-white);
-    border: 1px solid var(--color-border);
+    background: linear-gradient(135deg, var(--color-secondary), #c19c2f);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
     font-size: 1.2rem;
     cursor: pointer;
-    box-shadow: 0 16px 38px rgba(140, 75, 29, 0.2);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `;
 
   body.appendChild(scrollToTopBtn);
@@ -56,13 +66,15 @@ const initEnhancements = () => {
   });
 
   scrollToTopBtn.addEventListener('mouseenter', () => {
-    scrollToTopBtn.style.background = 'var(--color-secondary)';
-    scrollToTopBtn.style.transform = 'translateY(-2px)';
+    scrollToTopBtn.style.background = 'linear-gradient(135deg, #c19c2f, var(--color-secondary))';
+    scrollToTopBtn.style.transform = 'translateY(-4px) scale(1.05)';
+    scrollToTopBtn.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.6)';
   });
 
   scrollToTopBtn.addEventListener('mouseleave', () => {
-    scrollToTopBtn.style.background = 'var(--color-primary)';
-    scrollToTopBtn.style.transform = 'translateY(0)';
+    scrollToTopBtn.style.background = 'linear-gradient(135deg, var(--color-secondary), #c19c2f)';
+    scrollToTopBtn.style.transform = 'translateY(0) scale(1)';
+    scrollToTopBtn.style.boxShadow = '0 8px 24px rgba(212, 175, 55, 0.4)';
   });
 
   const observerOptions = {
