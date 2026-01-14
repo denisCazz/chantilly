@@ -58,6 +58,19 @@
         <h3>Punto Ritiro Amazon</h3>
         <p>Ritira comodamente i tuoi pacchi Amazon direttamente da noi, senza attese a casa.</p>
       </div>
+
+      <!-- Tessera Fedeltà -->
+      <div class="service-card loyalty-card-promo">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg>
+        </div>
+        <h3>Tessera Fedeltà</h3>
+        <p>Raccogli punti ad ogni acquisto e riscatta fantastici premi! Iscriviti gratuitamente e inizia subito a guadagnare.</p>
+        <a href="/account" class="loyalty-link">
+          Accedi o Registrati
+          <svg xmlns="http://www.w3.org/2000/svg" class="link-arrow" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6l-6 -6" /></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -163,5 +176,65 @@
   .service-card.special h3 { color: #fff; }
   .service-card.special p { color: rgba(255,255,255,0.9); }
 
-  @media (max-width: 768px) { .services { padding: 4rem 0; } .service-card { padding: 2rem 1.5rem; } }
+  /* Card Tessera Fedeltà */
+  .service-card.loyalty-card-promo {
+    border: 2px solid var(--color-secondary);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+    position: relative;
+    overflow: visible;
+  }
+
+  [data-theme="dark"] .service-card.loyalty-card-promo {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.08));
+    border-color: var(--color-secondary);
+  }
+
+  .service-card.loyalty-card-promo:hover {
+    border-color: var(--color-secondary);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.3);
+    transform: translateY(-10px);
+  }
+
+  .service-card.loyalty-card-promo .service-icon {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(212, 175, 55, 0.15));
+    border-color: var(--color-secondary);
+  }
+
+  .loyalty-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+    color: var(--color-white);
+    border-radius: var(--border-radius-full);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+  }
+
+  .loyalty-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-secondary) 100%);
+  }
+
+  .loyalty-link .link-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .loyalty-link:hover .link-arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 768px) { 
+    .services { padding: 4rem 0; } 
+    .service-card { padding: 2rem 1.5rem; } 
+    .loyalty-link {
+      width: 100%;
+      justify-content: center;
+    }
+  }
 </style>
