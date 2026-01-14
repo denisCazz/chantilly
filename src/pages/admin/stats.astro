@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthGate from '../../components/loyalty/AuthGate';
+import AdminStats from '../../components/loyalty/AdminStats';
+---
+
+<Layout title="Statistiche | Bar Chantilly">
+  <main class="admin-stats-page">
+    <div class="container">
+      <h1 class="page-title">Statistiche Sistema</h1>
+      <AuthGate requireRole="staff" client:load>
+        <div class="admin-content">
+          <AdminStats client:load />
+        </div>
+      </AuthGate>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .admin-stats-page {
+    min-height: 80vh;
+    padding: 2rem 1rem;
+    padding-top: calc(95px + 2rem); /* Header height + padding */
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--color-text-primary);
+  }
+
+  .admin-content {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .admin-stats-page {
+      padding-top: calc(95px + 1rem);
+    }
+  }
+</style>
