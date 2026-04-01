@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.env
+.env.*
+*.log
+.DS_Store
+tests
+playwright-report
+test-results
+.github
+.vscode
+*.md
+!README.md
+supabase

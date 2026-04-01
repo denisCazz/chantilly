@@ -1,10 +1,11 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://bartabacchichantilly.it/sitemap-index.xml
+
+# Blocca aree admin e risorse interne
 Disallow: /admin/
-Disallow: /private/
+Disallow: /.well-known/
 
-# Crawl instructions
-Crawl-delay: 1
-
-# Sitemap
-Sitemap: https://bartabacchichantilly.it/sitemap.xml
+# Blocca query string per evitare contenuti duplicati
+Disallow: /*?*
