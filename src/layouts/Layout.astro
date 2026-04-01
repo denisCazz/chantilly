@@ -1,10 +1,8 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Scripts from '../components/Scripts.astro';
 import ThemeManager from '../components/ThemeManager.astro';
 import '../styles/global.css';
-import '../styles/loyalty.css';
 
 export interface Props {
 	title: string;
@@ -51,7 +49,7 @@ const fontsHref = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;5
 		<meta name="twitter:image" content={ogImageUrl} />
 		
 		<!-- Local Business Schema -->
-		<script type="application/ld+json">
+		<script is:inline type="application/ld+json">
 		{
 			"@context": "https://schema.org",
 			"@type": "BarOrPub",

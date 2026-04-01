@@ -328,7 +328,7 @@
 <script>
 	// Lazy load iframe quando entra nel viewport
 	document.addEventListener('DOMContentLoaded', function() {
-		const iframe = document.getElementById('map-iframe');
+		const iframe = document.getElementById('map-iframe') as HTMLIFrameElement | null;
 		if (!iframe) return;
 		
 		const dataSrc = iframe.getAttribute('data-src');

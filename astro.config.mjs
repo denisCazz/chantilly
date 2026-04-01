@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import icon from "astro-icon";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import compressor from "astro-compressor";
 
@@ -30,7 +29,6 @@ export default defineConfig({
         mdi: ["*"],
       }
     }),
-    react(),
     sitemap(),
     compressor({ gzip: true, brotli: true }),
   ],

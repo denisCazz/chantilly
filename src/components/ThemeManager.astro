@@ -42,7 +42,7 @@
 		if (typeof mediaQuery.addEventListener === 'function') {
 			mediaQuery.addEventListener('change', handleSystemChange);
 		} else if (typeof mediaQuery.addListener === 'function') {
-			mediaQuery.addListener(handleSystemChange);
+			mediaQuery.addEventListener('change', handleSystemChange);
 		}
 	})();
 </script>

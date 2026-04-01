@@ -2,7 +2,7 @@
 ---
 
 <script>
-const scheduleNonCriticalWork = (callback) => {
+const scheduleNonCriticalWork = (callback: () => void) => {
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(callback, { timeout: 2000 });
   } else {

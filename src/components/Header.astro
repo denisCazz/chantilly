@@ -1,6 +1,5 @@
 
 ---
-import ProfileNavLink from './loyalty/ProfileNavLink';
 ---
 
 <header class="header">
@@ -16,7 +15,6 @@ import ProfileNavLink from './loyalty/ProfileNavLink';
 				<li><a href="/#orari" class="nav-link">Orari</a></li>
 				<li><a href="/#contatti" class="nav-link">Contatti</a></li>
 				<li><a href="/menu/" class="nav-link">Menu</a></li>
-				<ProfileNavLink client:load />
 			</ul>
 			
 			<div class="nav-controls">
@@ -30,9 +28,10 @@ import ProfileNavLink from './loyalty/ProfileNavLink';
 
 <script>
 	// Utilizziamo la delegazione degli eventi per assicurarci che funzioni
-	document.addEventListener('click', function(e) {
+	document.addEventListener('click', function(e: MouseEvent) {
+		const target = e.target as HTMLElement | null;
 		// Mobile menu toggle
-		if (e.target.closest('#mobile-toggle')) {
+		if (target?.closest('#mobile-toggle')) {
 			e.preventDefault();
 			e.stopPropagation();
 			
@@ -46,7 +45,7 @@ import ProfileNavLink from './loyalty/ProfileNavLink';
 		}
 		
 		// Close mobile menu when clicking on navigation links
-		if (e.target.closest('.nav-link')) {
+		if (target?.closest('.nav-link')) {
 			const mobileToggle = document.getElementById('mobile-toggle');
 			const navMenu = document.getElementById('nav-menu');
 			
@@ -58,24 +57,24 @@ import ProfileNavLink from './loyalty/ProfileNavLink';
 	});
 
 	document.addEventListener('DOMContentLoaded', function() {
-		const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+		const navLinks = Array.from(document.querySelectorAll<HTMLElement>('.nav-link'));
 		if (!navLinks.length) return;
 
-		const header = document.querySelector('.header');
+		const header = document.querySelector<HTMLElement>('.header');
 		const navMenu = document.getElementById('nav-menu');
 		const mobileToggle = document.getElementById('mobile-toggle');
 		const currentPath = window.location.pathname;
 		const isHomePage = currentPath === '/' || currentPath === '/index.html';
 
-		const setActiveLink = (predicate) => {
+		const setActiveLink = (predicate: (link: HTMLElement) => boolean) => {
 			navLinks.forEach((link) => {
 				const shouldActivate = predicate(link);
 				link.classList.toggle('active', Boolean(shouldActivate));
 			});
 		};
 
-		const setActiveByHref = (href) => setActiveLink((link) => link.getAttribute('href') === href);
-		const setActiveBySection = (sectionId) => setActiveLink((link) => link.dataset.sectionId === sectionId);
+		const setActiveByHref = (href: string) => setActiveLink((link) => link.getAttribute('href') === href);
+		const setActiveBySection = (sectionId: string) => setActiveLink((link) => link.dataset.sectionId === sectionId);
 
 		if (currentPath.startsWith('/menu')) {
 			setActiveByHref('/menu/');
@@ -86,7 +85,7 @@ import ProfileNavLink from './loyalty/ProfileNavLink';
 			return href && href.startsWith('/#');
 		});
 
-		const sectionsById = new Map();
+		const sectionsById = new Map<string, HTMLElement>();
 		const sectionElements = anchorLinks
 			.map((link) => {
 				const href = link.getAttribute('href');
@@ -99,7 +98,7 @@ import ProfileNavLink from './loyalty/ProfileNavLink';
 				}
 				return element;
 			})
-			.filter(Boolean);
+			.filter((el): el is HTMLElement => el !== null);
 
 		const enableScrollTracking = isHomePage && sectionElements.length > 0;
 
@@ -128,7 +127,7 @@ import ProfileNavLink from './loyalty/ProfileNavLink';
 		}
 
 		const visibleSections = new Map();
-		let scrollRaf = null;
+		let scrollRaf: number | null = null;
 
 		const updateFromVisibleSections = () => {
 			if (visibleSections.size) {
@@ -178,7 +177,7 @@ import ProfileNavLink from './loyalty/ProfileNavLink';
 				highlightByScrollPosition();
 			});
 
-			const applyHash = (hash) => {
+			const applyHash = (hash: string) => {
 				const sectionId = hash.replace('#', '');
 				if (!sectionId) {
 					highlightByScrollPosition();

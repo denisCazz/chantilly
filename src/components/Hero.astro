@@ -20,10 +20,6 @@ import { Icon } from 'astro-icon/components';
 					<Icon name="mdi:coffee-outline" />
 					Scopri il Menu
 				</a>
-				<a href="/account" class="btn btn-loyalty">
-					<Icon name="mdi:star" />
-					Tessera Fedeltà
-				</a>
 				<a href="#contatti" class="btn btn-secondary">
 					<Icon name="mdi:phone" />
 					Contattaci
@@ -234,32 +230,6 @@ import { Icon } from 'astro-icon/components';
 		border-color: var(--color-secondary);
 		color: var(--color-text-primary);
 		box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
-	}
-
-	.btn-loyalty {
-		background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.08));
-		color: var(--color-text-primary);
-		border: 2px solid var(--color-secondary);
-		box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2);
-	}
-
-	.btn-loyalty:hover {
-		background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
-		color: var(--color-white);
-		border-color: var(--color-secondary);
-		box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
-		transform: translateY(-4px);
-	}
-
-	[data-theme="dark"] .btn-loyalty {
-		background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
-		border-color: var(--color-secondary);
-		color: var(--color-text-primary);
-	}
-
-	[data-theme="dark"] .btn-loyalty:hover {
-		background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
-		color: var(--color-white);
 	}
 
 	@keyframes float {
